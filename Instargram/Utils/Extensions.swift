@@ -7,6 +7,17 @@
 
 import UIKit
 
+extension UIButton {
+    func attributedTitle(firstPart: String, secondPart: String) {
+        // 서로 다른 속성을 가지는 title을 조합해서 하나의 title로 만들고 싶을 때
+        let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.7), .font: UIFont.systemFont(ofSize: 16)]
+        let attributedTitle = NSMutableAttributedString(string: "\(firstPart) ", attributes: atts)
+        let boldAtts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.7), .font: UIFont.boldSystemFont(ofSize: 16)]
+        attributedTitle.append(NSAttributedString(string: secondPart, attributes: boldAtts))
+        setAttributedTitle(attributedTitle, for: .normal)
+    }
+}
+
 extension UIView {
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
