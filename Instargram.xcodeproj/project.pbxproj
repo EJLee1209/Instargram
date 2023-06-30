@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0C8D3A2A4EBE2F007F3C86 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C8D392A4EBE2F007F3C86 /* AuthenticationViewModel.swift */; };
 		CF197A4A2A4DBC8500F35185 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A492A4DBC8500F35185 /* AppDelegate.swift */; };
 		CF197A4C2A4DBC8500F35185 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A4B2A4DBC8500F35185 /* SceneDelegate.swift */; };
 		CF197A4E2A4DBC8500F35185 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A4D2A4DBC8500F35185 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF0C8D392A4EBE2F007F3C86 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		CF197A462A4DBC8500F35185 /* Instargram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instargram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF197A492A4DBC8500F35185 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF197A4B2A4DBC8500F35185 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		CF197A652A4DBD0C00F35185 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF0C8D392A4EBE2F007F3C86 /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				CF197A762A4DC9BB00F35185 /* FeedCell.swift in Sources */,
 				CF197A702A4DBEED00F35185 /* ImageSelectorController.swift in Sources */,
 				CF197A722A4DBEF600F35185 /* NotificationController.swift in Sources */,
+				CF0C8D3A2A4EBE2F007F3C86 /* AuthenticationViewModel.swift in Sources */,
 				CF197A6E2A4DBEE100F35185 /* SearchController.swift in Sources */,
 				CF197A6C2A4DBED000F35185 /* FeedController.swift in Sources */,
 				CF197A742A4DBEFE00F35185 /* ProfileController.swift in Sources */,
