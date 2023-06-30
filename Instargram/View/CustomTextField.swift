@@ -25,6 +25,8 @@ class CustomTextField: UITextField {
         backgroundColor = UIColor(white: 1, alpha: 0.1) // 투명도를 줘서 배경과 잘 어울러지게 시각적 효과를 줌
         setHeight(50)
         attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [.foregroundColor: UIColor(white: 1, alpha: 0.7)])
+        autocapitalizationType = .none
+        autocorrectionType = .no
         
     }
     

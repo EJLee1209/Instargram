@@ -19,9 +19,18 @@ protocol AuthenticationViewModel {
     var buttonTitleColor: UIColor { get }
 }
 
-struct LoginViewModel: AuthenticationViewModel {
+class LoginViewModel: AuthenticationViewModel {
+    //MARK: - Properties
     var email: String?
     var password: String?
+    
+    var isLoading: Bool = false {
+        didSet {
+            handleLoadingState()
+        }
+    }
+    
+    var handleLoadingState: ()->Void = {}
     
     // 이메일, 패스워드 모두 입력됐는지 유효성 검사 후 Bool 값을 리턴하는 Computed Property
     var formIsValid: Bool {
@@ -36,26 +45,39 @@ struct LoginViewModel: AuthenticationViewModel {
         return formIsValid ? .white : UIColor(white: 1, alpha: 0.67)
     }
     
+    //MARK: - User Input
     func handleLogin(currentVC: UIViewController){
         guard let email = self.email else { return }
         guard let password = self.password else { return }
-        AuthService.logUserIn(withEmail: email, password: password) { [weak currentVC] result, error in
+        isLoading.toggle()
+        AuthService.logUserIn(withEmail: email, password: password) { [weak currentVC, weak self] result, error in
             if let error = error {
                 print("DEBUG: Failed to log user in \(error.localizedDescription)")
+                self?.isLoading.toggle()
                 return
             }
+            self?.isLoading.toggle()
             currentVC?.dismiss(animated: true)
         }
     }
     
 }
 
-struct RegistrationViewModel: AuthenticationViewModel {
+class RegistrationViewModel: AuthenticationViewModel {
+    //MARK: - Properties
     var email: String?
     var password: String?
     var fullname: String?
     var username: String?
     var profileImage: UIImage?
+    
+    var isLoading: Bool = false {
+        didSet {
+            handleLoadingState()
+        }
+    }
+    
+    var handleLoadingState: ()->Void = {}
     
     var formIsValid: Bool {
         return email?.isEmpty == false && password?.isEmpty == false
@@ -70,6 +92,7 @@ struct RegistrationViewModel: AuthenticationViewModel {
         return formIsValid ? .white : UIColor(white: 1, alpha: 0.67)
     }
     
+    //MARK: - User Input
     func handleSignUp(currentVC: UIViewController) {
         guard let email = self.email else { return }
         guard let password = self.password else { return }
@@ -77,12 +100,14 @@ struct RegistrationViewModel: AuthenticationViewModel {
         guard let username = self.username?.lowercased() else { return }
         guard let profileImage = self.profileImage else { return }
         let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
-        
-        AuthService.registerUser(withCredential: credentials) { [weak currentVC] error in
+        isLoading.toggle()
+        AuthService.registerUser(withCredential: credentials) { [weak currentVC, weak self] error in
             if let error = error {
                 print("DEBUG: Failed to register user \(error.localizedDescription)")
+                self?.isLoading.toggle()
                 return
             }
+            self?.isLoading.toggle()
             currentVC?.dismiss(animated: true)
         }
     }

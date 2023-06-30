@@ -31,15 +31,8 @@ class RegistrationController: UIViewController {
     private let fullnameTextField = CustomTextField(placeHolder: "Fullname")
     private let usernameTextField = CustomTextField(placeHolder: "Username")
     
-    private let signUpButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
-        button.setTitleColor(UIColor(white: 1, alpha: 0.67), for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5)
-        button.layer.cornerRadius = 5
-        button.setHeight(50)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        button.isEnabled = false
+    private let signUpButton: CustomButton = {
+        let button = CustomButton(title: "Sign Up")
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         return button
     }()
@@ -80,6 +73,11 @@ class RegistrationController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         fullnameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+        viewModel.handleLoadingState = { [weak self] in
+            guard let safeSelf = self else{ return }
+            safeSelf.signUpButton.isLoading = safeSelf.viewModel.isLoading
+        }
     }
     
     //MARK: - Actions

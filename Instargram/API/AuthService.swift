@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 struct AuthCredentials {
     let email: String
@@ -27,6 +28,7 @@ struct AuthService {
                 result, error in
                 if let error = error {
                     print("DEBUG: Failed to register user \(error.localizedDescription)")
+                    completion(error)
                     return
                 }
                 guard let uid = result?.user.uid else { return }

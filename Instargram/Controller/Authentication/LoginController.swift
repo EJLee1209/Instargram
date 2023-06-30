@@ -18,10 +18,7 @@ class LoginController: UIViewController {
         return iv
     }()
     
-    private let emailTextField: UITextField = {
-        let tf = CustomTextField(placeHolder: "Email")
-        return tf
-    }()
+    private let emailTextField = CustomTextField(placeHolder: "Email")
     
     private let passwordTextField: UITextField = {
         let tf = CustomTextField(placeHolder: "Password")
@@ -29,15 +26,8 @@ class LoginController: UIViewController {
         return tf
     }()
     
-    private let loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
-        button.setTitleColor(UIColor(white: 1, alpha: 0.7), for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5)
-        button.layer.cornerRadius = 5
-        button.setHeight(50)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        button.isEnabled = false
+    private let loginButton: CustomButton = {
+        let button = CustomButton(title: "Log In")
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
@@ -60,6 +50,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNotificationObservers()
+        
     }
     
     //MARK: - Actions
@@ -108,6 +99,11 @@ class LoginController: UIViewController {
     func configureNotificationObservers() {
         emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        // 로딩 상태 관찰자
+        viewModel.handleLoadingState = { [weak self] in
+            guard let safeSelf = self else{ return }
+            safeSelf.loginButton.isLoading = safeSelf.viewModel.isLoading
+        }
     }
 }
 

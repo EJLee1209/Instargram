@@ -29,6 +29,7 @@
 		CF197A7F2A4DDB5000F35185 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */; };
 		CFA467522A4EDA8300EABDC9 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA467512A4EDA8300EABDC9 /* ImageUploader.swift */; };
 		CFA467542A4EDA8A00EABDC9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA467532A4EDA8A00EABDC9 /* AuthService.swift */; };
+		CFE802D62A4F2973003B2F88 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE802D52A4F2973003B2F88 /* CustomButton.swift */; };
 		CFECA67B2A4ED4E900F40CEE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67A2A4ED4E900F40CEE /* FirebaseAuth */; };
 		CFECA67D2A4ED4E900F40CEE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67C2A4ED4E900F40CEE /* FirebaseDatabase */; };
 		CFECA67F2A4ED4E900F40CEE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67E2A4ED4E900F40CEE /* FirebaseFirestore */; };
@@ -64,6 +65,7 @@
 		CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CFA467512A4EDA8300EABDC9 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		CFA467532A4EDA8A00EABDC9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		CFE802D52A4F2973003B2F88 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D036DEE30B6D716DBFEEE52E /* Pods_Instargram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instargram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D053CC0E33CABA65D5F02C4F /* Pods-Instargram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram.debug.xcconfig"; path = "Target Support Files/Pods-Instargram/Pods-Instargram.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +190,7 @@
 			children = (
 				CF197A752A4DC9BB00F35185 /* FeedCell.swift */,
 				CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */,
+				CFE802D52A4F2973003B2F88 /* CustomButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			files = (
 				CF197A7F2A4DDB5000F35185 /* CustomTextField.swift in Sources */,
 				CF197A4E2A4DBC8500F35185 /* ViewController.swift in Sources */,
+				CFE802D62A4F2973003B2F88 /* CustomButton.swift in Sources */,
 				CF197A7B2A4DD48A00F35185 /* LoginController.swift in Sources */,
 				CF197A762A4DC9BB00F35185 /* FeedCell.swift in Sources */,
 				CF197A702A4DBEED00F35185 /* ImageSelectorController.swift in Sources */,
