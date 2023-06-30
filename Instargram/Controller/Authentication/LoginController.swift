@@ -101,8 +101,7 @@ class LoginController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         // 로딩 상태 관찰자
         viewModel.handleLoadingState = { [weak self] in
-            guard let safeSelf = self else{ return }
-            safeSelf.loginButton.isLoading = safeSelf.viewModel.isLoading
+            self?.loginButton.isLoading = self?.viewModel.isLoading ?? false
         }
     }
 }

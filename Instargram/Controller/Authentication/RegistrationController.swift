@@ -75,8 +75,7 @@ class RegistrationController: UIViewController {
         usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         
         viewModel.handleLoadingState = { [weak self] in
-            guard let safeSelf = self else{ return }
-            safeSelf.signUpButton.isLoading = safeSelf.viewModel.isLoading
+            self?.signUpButton.isLoading = self?.viewModel.isLoading ?? false
         }
     }
     
