@@ -103,7 +103,6 @@ class RegistrationController: UIViewController {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
-        
         present(picker, animated: true)
     }
 }
