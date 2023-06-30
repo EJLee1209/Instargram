@@ -10,7 +10,6 @@ import UIKit
 class RegistrationController: UIViewController {
     
     var viewModel = RegistrationViewModel()
-    private var profileImage: UIImage?
     
     //MARK: - Properties
     private let plusPhotoButton: UIButton = {
@@ -109,20 +108,7 @@ class RegistrationController: UIViewController {
     }
     // 회원가입 버튼 클릭
     @objc func handleSignUp() {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        guard let fullname = fullnameTextField.text else { return }
-        guard let username = usernameTextField.text?.lowercased() else { return }
-        guard let profileImage = self.profileImage else { return }
-        let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
-        
-        AuthService.registerUser(withCredential: credentials) { error in
-            if let error = error {
-                print("DEBUG: Failed to register user \(error.localizedDescription)")
-                return
-            }
-            self.dismiss(animated: true)
-        }
+        viewModel.handleSignUp(currentVC: self)
     }
 }
 
@@ -144,7 +130,7 @@ extension RegistrationController: FormViewModel {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
-        profileImage = selectedImage
+        viewModel.profileImage = selectedImage
         
         plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2
         plusPhotoButton.layer.masksToBounds = true

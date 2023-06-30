@@ -15,7 +15,6 @@ class FeedController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
     }
     
     //MARK: - Actions
