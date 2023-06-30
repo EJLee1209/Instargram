@@ -10,6 +10,7 @@ import UIKit
 class RegistrationController: UIViewController {
     
     var viewModel = RegistrationViewModel()
+    private var profileImage: UIImage?
     
     //MARK: - Properties
     private let plusPhotoButton: UIButton = {
@@ -40,6 +41,7 @@ class RegistrationController: UIViewController {
         button.setHeight(50)
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
         button.isEnabled = false
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         return button
     }()
     
@@ -98,12 +100,23 @@ class RegistrationController: UIViewController {
         }
         updateForm()
     }
-    
+    // 프로필 사진 선택
     @objc func handleProfilePhotoSelect() {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
         present(picker, animated: true)
+    }
+    // 회원가입 버튼 클릭
+    @objc func handleSignUp() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullname = fullnameTextField.text else { return }
+        guard let username = usernameTextField.text else { return }
+        guard let profileImage = self.profileImage else { return }
+        let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
+        
+        AuthService.registerUser(withCredential: credentials)
     }
 }
 
@@ -125,11 +138,14 @@ extension RegistrationController: FormViewModel {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        profileImage = selectedImage
+        
         plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2
         plusPhotoButton.layer.masksToBounds = true
         plusPhotoButton.layer.borderColor = UIColor.white.cgColor
         plusPhotoButton.layer.borderWidth = 2
         plusPhotoButton.setImage(selectedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        
         self.dismiss(animated: true)
     }
 }

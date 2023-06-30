@@ -27,6 +27,8 @@
 		CF197A7B2A4DD48A00F35185 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A7A2A4DD48A00F35185 /* LoginController.swift */; };
 		CF197A7D2A4DD49800F35185 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A7C2A4DD49800F35185 /* RegistrationController.swift */; };
 		CF197A7F2A4DDB5000F35185 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */; };
+		CFA467522A4EDA8300EABDC9 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA467512A4EDA8300EABDC9 /* ImageUploader.swift */; };
+		CFA467542A4EDA8A00EABDC9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA467532A4EDA8A00EABDC9 /* AuthService.swift */; };
 		CFECA67B2A4ED4E900F40CEE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67A2A4ED4E900F40CEE /* FirebaseAuth */; };
 		CFECA67D2A4ED4E900F40CEE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67C2A4ED4E900F40CEE /* FirebaseDatabase */; };
 		CFECA67F2A4ED4E900F40CEE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67E2A4ED4E900F40CEE /* FirebaseFirestore */; };
@@ -60,6 +62,8 @@
 		CF197A7A2A4DD48A00F35185 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		CF197A7C2A4DD49800F35185 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		CFA467512A4EDA8300EABDC9 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		CFA467532A4EDA8A00EABDC9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		D036DEE30B6D716DBFEEE52E /* Pods_Instargram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instargram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D053CC0E33CABA65D5F02C4F /* Pods-Instargram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram.debug.xcconfig"; path = "Target Support Files/Pods-Instargram/Pods-Instargram.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,7 +94,6 @@
 				D053CC0E33CABA65D5F02C4F /* Pods-Instargram.debug.xcconfig */,
 				97B8E96F985E477CAE0E85F3 /* Pods-Instargram.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -152,6 +155,8 @@
 		CF197A602A4DBCF600F35185 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				CFA467512A4EDA8300EABDC9 /* ImageUploader.swift */,
+				CFA467532A4EDA8A00EABDC9 /* AuthService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -261,9 +266,9 @@
 			mainGroup = CF197A3D2A4DBC8500F35185;
 			packageReferences = (
 				CFECA6792A4ED4E900F40CEE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				CFECA6842A4ED53D00F40CEE /* XCRemoteSwiftPackageReference "YPImagePicker.git" */,
-				CFECA6872A4ED5C200F40CEE /* XCRemoteSwiftPackageReference "SDWebImage.git" */,
-				CFECA68A2A4ED5ED00F40CEE /* XCRemoteSwiftPackageReference "JGProgressHUD.git" */,
+				CFECA6842A4ED53D00F40CEE /* XCRemoteSwiftPackageReference "YPImagePicker" */,
+				CFECA6872A4ED5C200F40CEE /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				CFECA68A2A4ED5ED00F40CEE /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = CF197A472A4DBC8500F35185 /* Products */;
 			projectDirPath = "";
@@ -348,6 +353,8 @@
 				CF197A4A2A4DBC8500F35185 /* AppDelegate.swift in Sources */,
 				CF197A6A2A4DBDAD00F35185 /* MainTabController.swift in Sources */,
 				CF197A782A4DCA4B00F35185 /* Extensions.swift in Sources */,
+				CFA467522A4EDA8300EABDC9 /* ImageUploader.swift in Sources */,
+				CFA467542A4EDA8A00EABDC9 /* AuthService.swift in Sources */,
 				CF197A4C2A4DBC8500F35185 /* SceneDelegate.swift in Sources */,
 				CF197A7D2A4DD49800F35185 /* RegistrationController.swift in Sources */,
 			);
@@ -579,7 +586,7 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		CFECA6842A4ED53D00F40CEE /* XCRemoteSwiftPackageReference "YPImagePicker.git" */ = {
+		CFECA6842A4ED53D00F40CEE /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Yummypets/YPImagePicker.git";
 			requirement = {
@@ -587,7 +594,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		CFECA6872A4ED5C200F40CEE /* XCRemoteSwiftPackageReference "SDWebImage.git" */ = {
+		CFECA6872A4ED5C200F40CEE /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -595,7 +602,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		CFECA68A2A4ED5ED00F40CEE /* XCRemoteSwiftPackageReference "JGProgressHUD.git" */ = {
+		CFECA68A2A4ED5ED00F40CEE /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
 			requirement = {
@@ -633,17 +640,17 @@
 		};
 		CFECA6852A4ED53D00F40CEE /* YPImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CFECA6842A4ED53D00F40CEE /* XCRemoteSwiftPackageReference "YPImagePicker.git" */;
+			package = CFECA6842A4ED53D00F40CEE /* XCRemoteSwiftPackageReference "YPImagePicker" */;
 			productName = YPImagePicker;
 		};
 		CFECA6882A4ED5C200F40CEE /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CFECA6872A4ED5C200F40CEE /* XCRemoteSwiftPackageReference "SDWebImage.git" */;
+			package = CFECA6872A4ED5C200F40CEE /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
 		CFECA68B2A4ED5ED00F40CEE /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CFECA68A2A4ED5ED00F40CEE /* XCRemoteSwiftPackageReference "JGProgressHUD.git" */;
+			package = CFECA68A2A4ED5ED00F40CEE /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
 			productName = JGProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
