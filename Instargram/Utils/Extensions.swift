@@ -7,6 +7,16 @@
 
 import UIKit
 
+extension UIViewController {
+    func configureGradientLayer() {
+        let gradient = CAGradientLayer()
+        gradient.colors = [ UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor ]
+        gradient.locations = [0, 1]
+        gradient.frame = view.frame
+        view.layer.addSublayer(gradient)
+    }
+}
+
 extension UIButton {
     func attributedTitle(firstPart: String, secondPart: String) {
         // 서로 다른 속성을 가지는 title을 조합해서 하나의 title로 만들고 싶을 때

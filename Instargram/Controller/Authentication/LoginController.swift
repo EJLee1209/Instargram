@@ -46,6 +46,7 @@ class LoginController: UIViewController {
     private let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
         button.attributedTitle(firstPart: "Don't have an account?", secondPart:  "Sign Up")
+        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         return button
     }()
     
@@ -56,17 +57,17 @@ class LoginController: UIViewController {
         
     }
     
+    //MARK: - Actions
+    @objc func handleShowSignUp() {
+        let controller = RegistrationController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     //MARK: - Helpers
     func configureUI() {
-        view.backgroundColor = .white
+        configureGradientLayer()
         navigationController?.navigationBar.barStyle = .black // status bar의 글자 색깔을 white로 변경해줌
-        
-        let gradient = CAGradientLayer()
-        gradient.colors = [ UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor ]
-        gradient.locations = [0, 1]
-        gradient.frame = view.frame
-        view.layer.addSublayer(gradient)
-        
+        navigationController?.isNavigationBarHidden = true
         view.addSubview(iconImage)
         iconImage.centerX(inView: view)
         iconImage.setDimensions(height: 80, width: 120)
