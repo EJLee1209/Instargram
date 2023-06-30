@@ -74,10 +74,7 @@ class LoginController: UIViewController {
         if sender == passwordTextField {
             viewModel.password = sender.text
         }
-        
-        loginButton.backgroundColor = viewModel.buttonBackgroundColor
-        loginButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
-        loginButton.isEnabled = viewModel.formIsValid
+        updateForm()
     }
     
     //MARK: - Helpers
@@ -107,6 +104,18 @@ class LoginController: UIViewController {
         emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
-    
-    
+}
+
+//MARK: - FormViewModel
+/*
+ RegistrationViewController에서도 동일한 작업을 수행해야하므로
+ FormViewModel이라는 프로토콜을 채택하고, updateForm() 메서드를 구현하도록 함.
+ 코드를 훨씬 더 깔끔하게 만드는 방법임.
+ */
+extension LoginController: FormViewModel {
+    func updateForm() {
+        loginButton.backgroundColor = viewModel.buttonBackgroundColor
+        loginButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
+        loginButton.isEnabled = viewModel.formIsValid
+    }
 }

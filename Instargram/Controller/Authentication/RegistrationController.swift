@@ -9,6 +9,8 @@ import UIKit
 
 class RegistrationController: UIViewController {
     
+    var viewModel = RegistrationViewModel()
+    
     //MARK: - Properties
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -31,11 +33,12 @@ class RegistrationController: UIViewController {
     private let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        button.setTitleColor(UIColor(white: 1, alpha: 0.67), for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).withAlphaComponent(0.5)
         button.layer.cornerRadius = 5
         button.setHeight(50)
         button.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        button.isEnabled = false
         return button
     }()
     
@@ -50,6 +53,7 @@ class RegistrationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureGradientLayer()
+        configureNotificationObservers()
         
         view.addSubview(plusPhotoButton)
         plusPhotoButton.centerX(inView: view)
@@ -69,8 +73,42 @@ class RegistrationController: UIViewController {
         alreadyHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
     }
     
+    func configureNotificationObservers() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        fullnameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
     //MARK: - Actions
     @objc func handleShowLogin() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func textDidChange(_ sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        } else if sender == passwordTextField {
+            viewModel.password = sender.text
+        } else if sender == fullnameTextField {
+            viewModel.fullname = sender.text
+        } else {
+            viewModel.username = sender.text
+        }
+        updateForm()
+    }
+}
+
+//MARK: - FormViewModel
+/*
+ RegistrationViewController에서도 동일한 작업을 수행해야하므로
+ FormViewModel이라는 프로토콜을 채택하고, updateForm() 메서드를 구현하도록 함.
+ 코드를 훨씬 더 깔끔하게 만드는 방법임.
+ */
+extension RegistrationController: FormViewModel {
+    func updateForm() {
+        signUpButton.backgroundColor = viewModel.buttonBackgroundColor
+        signUpButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
+        signUpButton.isEnabled = viewModel.formIsValid
     }
 }
