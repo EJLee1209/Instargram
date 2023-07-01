@@ -6,9 +6,17 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserCell: UITableViewCell {
     //MARK: - Properties
+    var user: User? {
+        didSet {
+            usernameLabel.text = user?.username
+            fullnameLabel.text = user?.fullname
+        }
+    }
+
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -51,8 +59,9 @@ class UserCell: UITableViewCell {
         stack.centerY(inView: profileImageView, leftAnchor: profileImageView.rightAnchor, paddingLeft: 8)
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }
