@@ -9,19 +9,34 @@ import UIKit
 import Firebase
 
 class MainTabController: UITabBarController {
+    private var user: User? {
+        didSet {
+            guard let user = user else { return }
+            configureViewControllers(withUser: user)
+        }
+    }
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewControllers()
+        view.backgroundColor = .white
         checkIfUserIsLoggedIn()
+        fetchUser()
     }
     
     //MARK: - API
+    
+    func fetchUser() {
+        UserService.fetchUser { [weak self] user in
+            self?.user = user
+        }
+    }
     
     func checkIfUserIsLoggedIn() {
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 let controller = LoginController()
+                controller.delegate = self
                 let nav = UINavigationController(rootViewController: controller)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true)
@@ -31,15 +46,15 @@ class MainTabController: UITabBarController {
     
     
     //MARK: - Helpers
-    func configureViewControllers() {
+    func configureViewControllers(withUser user: User) {
         // 탭바 뷰컨트롤러 설정
         let layout = UICollectionViewFlowLayout() // 컬렉션뷰를 초기화하기 위해 UICollectionViewFlowLayout() 인스턴스 생성 후 전달
         let feed = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"), rootViewController: FeedController(collectionViewLayout: layout))
         let search = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "search_unselected"), selectedImage: #imageLiteral(resourceName: "search_selected"), rootViewController: SearchController())
         let imageSelector = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "plus_unselected"), selectedImage: #imageLiteral(resourceName: "plus_unselected"), rootViewController: ImageSelectorController())
         let notification = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "like_unselected"), selectedImage: #imageLiteral(resourceName: "like_selected"), rootViewController: NotificationController())
-        let profileLayout = UICollectionViewFlowLayout()
-        let profile = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"), rootViewController: ProfileController(collectionViewLayout: profileLayout))
+        let profileController = ProfileController(user: user)
+        let profile = templateNavigationController(unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"), rootViewController: profileController)
         
         viewControllers = [feed, search, imageSelector, notification, profile]
         tabBar.tintColor = .black
@@ -61,5 +76,10 @@ class MainTabController: UITabBarController {
     }
     
 }
-
-
+//MARK: - AuthenticationDelegate
+extension MainTabController: AuthenticationDelegate {
+    func authenticationComplete() {
+        fetchUser() // 로그인시 유저 정보를 다시 가져옴
+        self.dismiss(animated: true)
+    }
+}

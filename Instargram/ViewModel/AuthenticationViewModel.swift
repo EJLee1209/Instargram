@@ -46,18 +46,18 @@ class LoginViewModel: AuthenticationViewModel {
     }
     
     //MARK: - User Input
-    func handleLogin(currentVC: UIViewController){
+    func handleLogin(completion: @escaping()->Void){
         guard let email = self.email else { return }
         guard let password = self.password else { return }
         isLoading.toggle()
-        AuthService.logUserIn(withEmail: email, password: password) { [weak currentVC, weak self] result, error in
+        AuthService.logUserIn(withEmail: email, password: password) { [weak self] result, error in
             if let error = error {
                 print("DEBUG: Failed to log user in \(error.localizedDescription)")
                 self?.isLoading.toggle()
                 return
             }
             self?.isLoading.toggle()
-            currentVC?.dismiss(animated: true)
+            completion()
         }
     }
     
@@ -93,7 +93,7 @@ class RegistrationViewModel: AuthenticationViewModel {
     }
     
     //MARK: - User Input
-    func handleSignUp(currentVC: UIViewController) {
+    func handleSignUp(completion: @escaping()->Void) {
         guard let email = self.email else { return }
         guard let password = self.password else { return }
         guard let fullname = self.fullname else { return }
@@ -101,14 +101,14 @@ class RegistrationViewModel: AuthenticationViewModel {
         guard let profileImage = self.profileImage else { return }
         let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
         isLoading.toggle()
-        AuthService.registerUser(withCredential: credentials) { [weak currentVC, weak self] error in
+        AuthService.registerUser(withCredential: credentials) { [weak self] error in
             if let error = error {
                 print("DEBUG: Failed to register user \(error.localizedDescription)")
                 self?.isLoading.toggle()
                 return
             }
             self?.isLoading.toggle()
-            currentVC?.dismiss(animated: true)
+            completion()
         }
     }
 }

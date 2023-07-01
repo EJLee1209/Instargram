@@ -7,10 +7,25 @@
 
 import UIKit
 
+protocol AuthenticationDelegate: AnyObject {
+    /*
+     로그아웃 후 다른 계정으로 로그인을 하면,
+     현재 로그인한 계정의 데이터를 가져와야해서
+     로그인한 시점에 호출할 메서드를 Delegate 패턴으로 작성
+     
+     LoginController는 해당 프로토콜을 준수하는 ViewController를 delegate로서 가지고,
+     로그인이 완료되는 시점에 authenticationComplete() 메서드를 호출하도록 delegate에게 지시함으로써
+     delegate 즉, 대리자 역할을 하는 ViewController에서는 로그인 완료 시점을 알 수 있고,
+     그 시점에서 필요한 로직을 처리한다.
+     */
+    func authenticationComplete()
+}
+
 class LoginController: UIViewController {
     //MARK: - Properties
     
     private var viewModel = LoginViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     private let iconImage: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white"))
@@ -55,11 +70,14 @@ class LoginController: UIViewController {
     
     //MARK: - Actions
     @objc func handleLogin() {
-        viewModel.handleLogin(currentVC: self)
+        viewModel.handleLogin { [weak self] in
+            self?.delegate?.authenticationComplete()
+        }
     }
     
     @objc func handleShowSignUp() {
         let controller = RegistrationController()
+        controller.delegate = delegate
         navigationController?.pushViewController(controller, animated: true)
     }
     

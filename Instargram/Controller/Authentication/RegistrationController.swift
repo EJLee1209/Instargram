@@ -10,6 +10,7 @@ import UIKit
 class RegistrationController: UIViewController {
     
     var viewModel = RegistrationViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     //MARK: - Properties
     private let plusPhotoButton: UIButton = {
@@ -105,7 +106,9 @@ class RegistrationController: UIViewController {
     }
     // 회원가입 버튼 클릭
     @objc func handleSignUp() {
-        viewModel.handleSignUp(currentVC: self)
+        viewModel.handleSignUp { [weak self] in
+            self?.delegate?.authenticationComplete()
+        }
     }
 }
 
