@@ -58,7 +58,7 @@ class MainTabController: UITabBarController {
         
         viewControllers = [feed, search, imageSelector, notification, profile]
         tabBar.tintColor = .black
-        tabBar.backgroundColor = .systemBackground
+        tabBar.backgroundColor = UIColor(white: 1, alpha: 0.7)
     }
     func templateNavigationController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController) -> UINavigationController {
         // 탭바의 뷰컨트롤러로 들어갈 UINavigationController를 생성 -> 탭바의 컨트롤러 각각은 UINavigationController임
@@ -69,7 +69,7 @@ class MainTabController: UITabBarController {
         // UINavigationBarAppearance를 설정해야 NavBar의 background를 지정할 수 있음
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor =  .systemBackground
+        appearance.backgroundColor = UIColor(white: 1, alpha: 0.7)
         nav.navigationBar.standardAppearance = appearance
         nav.navigationBar.scrollEdgeAppearance = appearance
         return nav
