@@ -68,4 +68,17 @@ struct UserService {
                     .delete(completion: completion)
             }
     }
+    
+    // 팔로우 여부 확인
+    static func checkIfUserIsFollowed(uid: String, completion: @escaping(Bool) -> Void) {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        COLLECTION_FOLLOWING
+            .document(currentUid)
+            .collection("user-following")
+            .document(uid)
+            .getDocument { snapshot, error in
+                guard let isFollowed = snapshot?.exists else { return }
+                completion(isFollowed)
+            }
+    }
 }
