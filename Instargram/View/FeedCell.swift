@@ -22,14 +22,13 @@ class FeedCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.isUserInteractionEnabled = true
-        iv.image = #imageLiteral(resourceName: "venom-7")
+        iv.backgroundColor = .lightGray
         return iv
     }()
     // addTarget을 위해서 lazy로 선언
     private lazy var usernameButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(.black, for: .normal)
-        button.setTitle("venom", for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 13)
         button.addTarget(self, action: #selector(didTapUsername), for: .touchUpInside)
         return button
@@ -67,7 +66,6 @@ class FeedCell: UICollectionViewCell {
     
     private let likesLabel: UILabel = {
         let label = UILabel()
-        label.text = "1 like"
         label.font = .boldSystemFont(ofSize: 12)
         return label
     }()
@@ -130,9 +128,10 @@ class FeedCell: UICollectionViewCell {
     func configure() {
         guard let viewModel = viewModel else { return }
         captionLabel.text = viewModel.caption
-        postImageView.sd_setImage(with: viewModel.imageUrl)
         likesLabel.text = viewModel.like
-        
+        usernameButton.setTitle(viewModel.ownerUsername, for: .normal)
+        postImageView.sd_setImage(with: viewModel.imageUrl)
+        profileImageView.sd_setImage(with: viewModel.ownerProfileImage)
     }
     
     func configureActionButtons() {
