@@ -134,5 +134,9 @@ extension MainTabController: UploadPostControllerDelegate {
     func controllerDidFinishUploadingPost(_ controller: UploadPostController?) {
         selectedIndex = 0
         controller?.dismiss(animated: true)
+        // 게시물 업로드시 피드 갱신
+        guard let feedNav = viewControllers?.first as? UINavigationController else { return }
+        guard let feed = feedNav.viewControllers.first as? FeedController else { return }
+        feed.handleRefresh()
     }
 }
