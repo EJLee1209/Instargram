@@ -6,9 +6,16 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FeedCell: UICollectionViewCell {
     //MARK: - Properties
+    
+    var viewModel: PostViewModel? {
+        didSet {
+            configure()
+        }
+    }
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -67,7 +74,6 @@ class FeedCell: UICollectionViewCell {
     
     private let captionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Some test caption for now.."
         label.font = .boldSystemFont(ofSize: 14)
         return label
     }()
@@ -120,6 +126,14 @@ class FeedCell: UICollectionViewCell {
     }
     
     //MARK: - Helpers
+    
+    func configure() {
+        guard let viewModel = viewModel else { return }
+        captionLabel.text = viewModel.caption
+        postImageView.sd_setImage(with: viewModel.imageUrl)
+        likesLabel.text = viewModel.like
+        
+    }
     
     func configureActionButtons() {
         let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, shareButton])
