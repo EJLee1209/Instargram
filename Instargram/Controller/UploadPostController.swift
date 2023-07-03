@@ -34,6 +34,7 @@ class UploadPostController: UIViewController {
         tv.placeholderText = "Enter caption.."
         tv.font = .systemFont(ofSize: 16)
         tv.delegate = self
+        tv.placeholderShouldCenter = false
         return tv
     }()
     
@@ -41,7 +42,7 @@ class UploadPostController: UIViewController {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = .systemFont(ofSize: 14)
-        label.text = "0/100"
+        label.text = "0/300"
         return label
     }()
     

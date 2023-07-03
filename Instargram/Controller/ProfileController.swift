@@ -35,11 +35,17 @@ class ProfileController: UICollectionViewController {
         fetchPosts()
     }
     
+    //MARK: - Actions
+    @objc func handleRefresh() {
+        fetchPosts()
+    }
+    
     //MARK: - API
     func fetchPosts() {
         PostService.fetchPosts(forUser: user.uid) { [weak self] posts in
             self?.posts = posts
             self?.collectionView.reloadData()
+            self?.collectionView.refreshControl?.endRefreshing()
         }
     }
     
@@ -72,6 +78,10 @@ class ProfileController: UICollectionViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: headerIdentifier
         )
+        
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refresher
     }
 }
 

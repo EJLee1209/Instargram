@@ -93,6 +93,7 @@ extension FeedController {
         } else {
             cell.viewModel = PostViewModel(post: posts[indexPath.row])
         }
+        cell.delegate = self
         return cell
     }
 }
@@ -106,5 +107,13 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
         var height = width + 8 + 40 + 8 // 8은 패딩값, 40은 프로필 이미지뷰 지름
         height += 110 // 좋아요 버튼, 나머지 라벨 높이
         return CGSize(width: width, height: height)
+    }
+}
+
+//MARK: - FeedCellDelegate
+extension FeedController: FeedCellDelegate {
+    func cell(_ cell: FeedCell, wantsToShowCommentsFor post: Post) {
+        let controller = CommentController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
