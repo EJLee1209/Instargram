@@ -18,6 +18,10 @@ protocol ProfileHeaderDelegate: AnyObject {
     func header(_ profileHeader: ProfileHeader, didTapEditProfileButtonFor user: User)
 }
 
+protocol ProfileHeaderDelegateForMain: AnyObject {
+    func updateUI()
+}
+
 class ProfileHeader: UICollectionReusableView {
     //MARK: - Properties
     var viewModel: ProfileHeaderViewModel? {
@@ -25,6 +29,7 @@ class ProfileHeader: UICollectionReusableView {
     }
     
     weak var delegate: ProfileHeaderDelegate?
+    weak var delegateForMain: ProfileHeaderDelegateForMain?
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -172,7 +177,9 @@ class ProfileHeader: UICollectionReusableView {
             editProfileFollowButton.isLoading = true
             delegate?.header(self, didTapFollowButtonFor: viewModel.user) { [weak self] in
                 self?.editProfileFollowButton.isLoading = false
+                self?.delegateForMain?.updateUI()
             }
+            
         }
     }
     

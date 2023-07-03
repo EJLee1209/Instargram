@@ -91,6 +91,9 @@ extension ProfileController {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ProfileHeader
         header.viewModel = ProfileHeaderViewModel(user: user)
         header.delegate = self
+        if let mainTabController = tabBarController as? MainTabController {
+            header.delegateForMain = mainTabController
+        }
         return header
     }
 }

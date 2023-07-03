@@ -140,3 +140,12 @@ extension MainTabController: UploadPostControllerDelegate {
         feed.handleRefresh()
     }
 }
+
+//MARK: - ProfileHeaderDelegateForMain
+extension MainTabController: ProfileHeaderDelegateForMain {
+    func updateUI() {
+        guard let profileNav = viewControllers?.last as? UINavigationController else { return }
+        guard let profile = profileNav.viewControllers.first as? ProfileController else { return }
+        profile.fetchUserStats { }
+    }
+}
