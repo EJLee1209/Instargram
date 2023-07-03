@@ -14,7 +14,8 @@ import SDWebImage
  API 호출을 위임
  */
 protocol ProfileHeaderDelegate: AnyObject {
-    func header(_ profileHeader: ProfileHeader, didTapActionButtonFor user: User)
+    func header(_ profileHeader: ProfileHeader, didTapFollowButtonFor user: User, completion: @escaping () -> Void)
+    func header(_ profileHeader: ProfileHeader, didTapEditProfileButtonFor user: User)
 }
 
 class ProfileHeader: UICollectionReusableView {
@@ -39,12 +40,13 @@ class ProfileHeader: UICollectionReusableView {
         return label
     }()
     
-    private lazy var editProfileFollowButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Loading", for: .normal)
+    private lazy var editProfileFollowButton: CustomButton = {
+        let button = CustomButton(title: "Loading", backgroundColor: .systemBlue)
+        button.setHeight(30)
         button.layer.cornerRadius = 3
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 0.5
+        button.isEnabled = true
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(handleEditProfileFollowTapped), for: .touchUpInside)
@@ -164,7 +166,14 @@ class ProfileHeader: UICollectionReusableView {
     //MARK: - Actions
     @objc func handleEditProfileFollowTapped() {
         guard let viewModel = viewModel else { return }
-        delegate?.header(self, didTapActionButtonFor: viewModel.user)
+        if viewModel.user.isCurrentUser {
+            delegate?.header(self, didTapEditProfileButtonFor: viewModel.user)
+        } else {
+            editProfileFollowButton.isLoading = true
+            delegate?.header(self, didTapFollowButtonFor: viewModel.user) { [weak self] in
+                self?.editProfileFollowButton.isLoading = false
+            }
+        }
     }
     
     //MARK: - Helpers

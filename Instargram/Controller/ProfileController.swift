@@ -31,7 +31,7 @@ class ProfileController: UICollectionViewController {
         super.viewDidLoad()
         configureCollectionView()
         checkIfUserIsFollowed()
-        fetchUserStats()
+        fetchUserStats{}
         fetchPosts()
     }
     
@@ -43,11 +43,11 @@ class ProfileController: UICollectionViewController {
         }
     }
     
-    func fetchUserStats() {
+    func fetchUserStats(completion: @escaping () -> Void) {
         UserService.fetchUserStats(uid: user.uid) { [weak self] stats in
             self?.user.stats = stats
             self?.collectionView.reloadData()
-            print("DEBUG: Stats \(stats)")
+            completion()
         }
     }
     
@@ -126,19 +126,21 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 
 //MARK: - ProfileHeaderDelegate
 extension ProfileController: ProfileHeaderDelegate {
-    func header(_ profileHeader: ProfileHeader, didTapActionButtonFor user: User) {
-        if user.isCurrentUser {
-            print("DEBUG: Show edit profile here..")
-        } else if user.isFollowed {
+    func header(_ profileHeader: ProfileHeader, didTapFollowButtonFor user: User, completion: @escaping () -> Void) {
+        if user.isFollowed {
             UserService.unfollow(uid: user.uid) { [weak self] error in
                 self?.user.isFollowed = false
-                self?.fetchUserStats()
+                self?.fetchUserStats(completion: completion)
             }
         } else {
             UserService.follow(uid: user.uid) { [weak self] error in
                 self?.user.isFollowed = true
-                self?.fetchUserStats()
+                self?.fetchUserStats(completion: completion)
             }
         }
+    }
+    
+    func header(_ profileHeader: ProfileHeader, didTapEditProfileButtonFor user: User) {
+        print("DEBUG: Show edit profile here..")
     }
 }
