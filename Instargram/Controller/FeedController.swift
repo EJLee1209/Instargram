@@ -11,13 +11,20 @@ import Firebase
 private let reuseIdentifier = "Cell"
 
 class FeedController: UICollectionViewController {
+    
+    //MARK: - Properties
+    var posts: [Post] = []
+    
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        fetchPosts()
     }
     
     //MARK: - Actions
+    
     @objc func handleLogout() {
         do {
             try Auth.auth().signOut()
@@ -30,8 +37,17 @@ class FeedController: UICollectionViewController {
             print("DEBUG: Failed to sign out")
         }
     }
+    //MARK: - API
+    
+    func fetchPosts() {
+        PostService.fetchPosts { [weak self] posts in
+            self?.posts = posts
+            self?.collectionView.reloadData()
+        }
+    }
     
     //MARK: - Helpers
+    
     func configureUI() {
         view.backgroundColor = .white
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -46,17 +62,20 @@ class FeedController: UICollectionViewController {
 }
 
 //MARK: - UICollectionViewDataSource
+
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return posts.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        
         return cell
     }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
+
 extension FeedController: UICollectionViewDelegateFlowLayout {
     // 컬렉션 뷰 셀의 크기 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
