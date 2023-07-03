@@ -29,6 +29,7 @@
 		CF197A7F2A4DDB5000F35185 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */; };
 		CF25246B2A528D78005EC5BE /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25246A2A528D78005EC5BE /* UploadPostController.swift */; };
 		CF25246D2A528FD3005EC5BE /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25246C2A528FD3005EC5BE /* InputTextView.swift */; };
+		CF25246F2A529815005EC5BE /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25246E2A529815005EC5BE /* PostService.swift */; };
 		CFA467522A4EDA8300EABDC9 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA467512A4EDA8300EABDC9 /* ImageUploader.swift */; };
 		CFA467542A4EDA8A00EABDC9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA467532A4EDA8A00EABDC9 /* AuthService.swift */; };
 		CFA9C92B2A50101500F673AB /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9C92A2A50101500F673AB /* ProfileCell.swift */; };
@@ -75,6 +76,7 @@
 		CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CF25246A2A528D78005EC5BE /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		CF25246C2A528FD3005EC5BE /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		CF25246E2A529815005EC5BE /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		CFA467512A4EDA8300EABDC9 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		CFA467532A4EDA8A00EABDC9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		CFA9C92A2A50101500F673AB /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				CFA467512A4EDA8300EABDC9 /* ImageUploader.swift */,
 				CFA467532A4EDA8A00EABDC9 /* AuthService.swift */,
 				CFA9C92F2A501AF500F673AB /* UserService.swift */,
+				CF25246E2A529815005EC5BE /* PostService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				CFA9C93B2A507B3500F673AB /* UserCellViewModel.swift in Sources */,
 				CF197A4A2A4DBC8500F35185 /* AppDelegate.swift in Sources */,
 				CF197A6A2A4DBDAD00F35185 /* MainTabController.swift in Sources */,
+				CF25246F2A529815005EC5BE /* PostService.swift in Sources */,
 				CFA9C9302A501AF500F673AB /* UserService.swift in Sources */,
 				CF197A782A4DCA4B00F35185 /* Extensions.swift in Sources */,
 				CFA467522A4EDA8300EABDC9 /* ImageUploader.swift in Sources */,
