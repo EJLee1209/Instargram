@@ -46,6 +46,7 @@
 		CFA9C9392A503ECC00F673AB /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9C9382A503ECC00F673AB /* UserCell.swift */; };
 		CFA9C93B2A507B3500F673AB /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9C93A2A507B3500F673AB /* UserCellViewModel.swift */; };
 		CFAC13CA2A54459B00BEDC99 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC13C92A54459B00BEDC99 /* CommentService.swift */; };
+		CFAC13CC2A54493000BEDC99 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC13CB2A54493000BEDC99 /* Comment.swift */; };
 		CFE802D62A4F2973003B2F88 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE802D52A4F2973003B2F88 /* CustomButton.swift */; };
 		CFECA67B2A4ED4E900F40CEE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67A2A4ED4E900F40CEE /* FirebaseAuth */; };
 		CFECA67D2A4ED4E900F40CEE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67C2A4ED4E900F40CEE /* FirebaseDatabase */; };
@@ -99,6 +100,7 @@
 		CFA9C9382A503ECC00F673AB /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		CFA9C93A2A507B3500F673AB /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
 		CFAC13C92A54459B00BEDC99 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		CFAC13CB2A54493000BEDC99 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		CFE802D52A4F2973003B2F88 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D036DEE30B6D716DBFEEE52E /* Pods_Instargram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instargram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D053CC0E33CABA65D5F02C4F /* Pods-Instargram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram.debug.xcconfig"; path = "Target Support Files/Pods-Instargram/Pods-Instargram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 			children = (
 				CFA9C9332A501C6000F673AB /* User.swift */,
 				CF2524702A52B039005EC5BE /* Post.swift */,
+				CFAC13CB2A54493000BEDC99 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				CFE802D62A4F2973003B2F88 /* CustomButton.swift in Sources */,
 				CF197A7B2A4DD48A00F35185 /* LoginController.swift in Sources */,
 				CFA9C9362A501F6A00F673AB /* ProfileHeaderViewModel.swift in Sources */,
+				CFAC13CC2A54493000BEDC99 /* Comment.swift in Sources */,
 				CF197A762A4DC9BB00F35185 /* FeedCell.swift in Sources */,
 				CF25246B2A528D78005EC5BE /* UploadPostController.swift in Sources */,
 				CF2524772A52FB1E005EC5BE /* CommentController.swift in Sources */,

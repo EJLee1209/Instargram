@@ -14,6 +14,8 @@ class CommentController : UICollectionViewController {
     //MARK: - Properties
     private let post: Post
     
+    var comments: [Comment] = []
+    
     private lazy var commentInputView: CommentInputAccesoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         let cv = CommentInputAccesoryView(frame: frame)
@@ -36,7 +38,7 @@ class CommentController : UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        
+        fetchComments()
     }
     
     override var inputAccessoryView: UIView? {
@@ -46,6 +48,16 @@ class CommentController : UICollectionViewController {
     override var canBecomeFirstResponder: Bool {
         return true
     }
+    
+    //MARK: - API
+    
+    func fetchComments() {
+        CommentService.fetchComment(forPost: post.postId) { [weak self] comments in
+            self?.comments = comments
+            self?.collectionView.reloadData()
+        }
+    }
+    
     
     //MARK: - Helpers
     
@@ -61,11 +73,12 @@ class CommentController : UICollectionViewController {
 //MARK: - UICollectionViewDataSource
 extension CommentController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return comments.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CommentCell
+        
         return cell
     }
 }
