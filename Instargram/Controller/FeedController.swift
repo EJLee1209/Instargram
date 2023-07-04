@@ -16,6 +16,8 @@ class FeedController: UICollectionViewController {
     var posts: [Post] = []
     var post: Post?
     
+    var user: User!
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -114,6 +116,8 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 extension FeedController: FeedCellDelegate {
     func cell(_ cell: FeedCell, wantsToShowCommentsFor post: Post) {
         let controller = CommentController(collectionViewLayout: UICollectionViewFlowLayout())
-        present(controller, animated: true)
+        controller.user = user
+        controller.post = post
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

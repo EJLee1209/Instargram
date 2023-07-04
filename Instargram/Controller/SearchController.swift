@@ -11,6 +11,7 @@ private let reuseIdentifier = "UserCell"
 
 class SearchController: UITableViewController {
     //MARK: - Properties
+    var currentUser: User!
     private var users: [User] = []
     private var filteredUsers: [User] = []
     private let searchController = UISearchController(searchResultsController: nil)
@@ -73,6 +74,9 @@ extension SearchController {
         tableView.deselectRow(at: indexPath, animated: true)
         let user = inSearchMode ? filteredUsers[indexPath.row] : users[indexPath.row]
         let controller = ProfileController(user: user)
+        if user.uid != currentUser.uid {
+            controller.currentUser = currentUser
+        }
         navigationController?.pushViewController(controller, animated: true)
     }
 }

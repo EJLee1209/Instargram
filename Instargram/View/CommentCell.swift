@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CommentCell: UICollectionViewCell {
     
     //MARK: - Properties
+    
+    var viewModel: CommentViewModel? {
+        didSet {
+            configure()
+        }
+    }
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -21,22 +28,6 @@ class CommentCell: UICollectionViewCell {
     
     private let commentLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(
-            string: "jocker  ",
-            attributes: [
-                .font: UIFont.boldSystemFont(ofSize: 14)
-            ]
-        )
-        attributedString.append(
-            NSAttributedString(
-                string: "Some test comment for now..",
-                attributes: [
-                    .font: UIFont.systemFont(ofSize: 14)
-                ]
-            )
-        )
-        label.attributedText = attributedString
-        
         return label
     }()
     
@@ -65,4 +56,24 @@ class CommentCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Helpers
+    
+    func configure() {
+        profileImageView.sd_setImage(with: viewModel?.ownerImage)
+        let attributedString = NSMutableAttributedString(
+            string: "\(viewModel?.ownername ?? "")  ",
+            attributes: [
+                .font: UIFont.boldSystemFont(ofSize: 14)
+            ]
+        )
+        attributedString.append(
+            NSAttributedString(
+                string: "\(viewModel?.text ?? "")",
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 14)
+                ]
+            )
+        )
+        commentLabel.attributedText = attributedString
+    }
 }

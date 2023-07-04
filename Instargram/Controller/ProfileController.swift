@@ -15,6 +15,7 @@ class ProfileController: UICollectionViewController {
     //MARK: - Properties
     private var user: User
     private var posts: [Post] = []
+    var currentUser: User?
     
     //MARK: - LifeCycle
     
@@ -113,6 +114,7 @@ extension ProfileController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
         controller.post = posts[indexPath.row]
+        controller.user = currentUser == nil ? user : currentUser
         navigationController?.pushViewController(controller, animated: true)
     }
 }

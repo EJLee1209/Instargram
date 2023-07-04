@@ -62,6 +62,7 @@ class CommentInputAccesoryView: UIView {
         divider.backgroundColor = .lightGray
         addSubview(divider)
         divider.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, height: 0.5)
+        
     }
     
     required init?(coder: NSCoder) {
