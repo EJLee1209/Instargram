@@ -8,6 +8,8 @@
 import Firebase
 
 struct CommentService {
+    static var commentListener: ListenerRegistration?
+    
     static func uploadComment(
         comment: String,
         postID: String,
@@ -30,19 +32,24 @@ struct CommentService {
         completion: @escaping ([Comment]) -> Void
     ) {
         var comments = [Comment]()
-        let query = COLLECTION_POSTS.document(postID).collection("comments")
+        commentListener = COLLECTION_POSTS
+            .document(postID)
+            .collection("comments")
             .order(by: "timestamp", descending: true)
-        
-        query.addSnapshotListener { snapshot, error in
-            snapshot?.documentChanges.forEach({ change in
-                if change.type == .added {
-                    let data = change.document.data()
-                    let comment = Comment(dictinary: data)
-                    comments.append(comment)
-                }
-            })
-            
-            completion(comments)
-        }        
+            .addSnapshotListener { snapshot, error in
+                snapshot?.documentChanges.forEach({ change in
+                    if change.type == .added {
+                        let data = change.document.data()
+                        let comment = Comment(dictinary: data)
+                        comments.append(comment)
+                    }
+                })
+                print("DEBUG: fetchComment")
+                completion(comments)
+            }
+    }
+    
+    static func removeCommentListener() {
+        commentListener?.remove()
     }
 }

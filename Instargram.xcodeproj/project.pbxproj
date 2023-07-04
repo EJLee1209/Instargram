@@ -47,6 +47,7 @@
 		CFA9C93B2A507B3500F673AB /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA9C93A2A507B3500F673AB /* UserCellViewModel.swift */; };
 		CFAC13CA2A54459B00BEDC99 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC13C92A54459B00BEDC99 /* CommentService.swift */; };
 		CFAC13CC2A54493000BEDC99 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC13CB2A54493000BEDC99 /* Comment.swift */; };
+		CFAC13CE2A544B9F00BEDC99 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC13CD2A544B9F00BEDC99 /* CommentViewModel.swift */; };
 		CFE802D62A4F2973003B2F88 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE802D52A4F2973003B2F88 /* CustomButton.swift */; };
 		CFECA67B2A4ED4E900F40CEE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67A2A4ED4E900F40CEE /* FirebaseAuth */; };
 		CFECA67D2A4ED4E900F40CEE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67C2A4ED4E900F40CEE /* FirebaseDatabase */; };
@@ -101,6 +102,7 @@
 		CFA9C93A2A507B3500F673AB /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
 		CFAC13C92A54459B00BEDC99 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		CFAC13CB2A54493000BEDC99 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		CFAC13CD2A544B9F00BEDC99 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		CFE802D52A4F2973003B2F88 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D036DEE30B6D716DBFEEE52E /* Pods_Instargram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instargram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D053CC0E33CABA65D5F02C4F /* Pods-Instargram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram.debug.xcconfig"; path = "Target Support Files/Pods-Instargram/Pods-Instargram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				CFA9C9352A501F6A00F673AB /* ProfileHeaderViewModel.swift */,
 				CFA9C93A2A507B3500F673AB /* UserCellViewModel.swift */,
 				CF2524722A52B293005EC5BE /* PostViewModel.swift */,
+				CFAC13CD2A544B9F00BEDC99 /* CommentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				CF25246D2A528FD3005EC5BE /* InputTextView.swift in Sources */,
 				CFA9C9392A503ECC00F673AB /* UserCell.swift in Sources */,
 				CF197A742A4DBEFE00F35185 /* ProfileController.swift in Sources */,
+				CFAC13CE2A544B9F00BEDC99 /* CommentViewModel.swift in Sources */,
 				CFA9C93B2A507B3500F673AB /* UserCellViewModel.swift in Sources */,
 				CF197A4A2A4DBC8500F35185 /* AppDelegate.swift in Sources */,
 				CF197A6A2A4DBDAD00F35185 /* MainTabController.swift in Sources */,
