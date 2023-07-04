@@ -37,14 +37,8 @@ struct CommentService {
             .collection("comments")
             .order(by: "timestamp", descending: true)
             .addSnapshotListener { snapshot, error in
-                snapshot?.documentChanges.forEach({ change in
-                    if change.type == .added {
-                        let data = change.document.data()
-                        let comment = Comment(dictinary: data)
-                        comments.append(comment)
-                    }
-                })
-                print("DEBUG: fetchComment")
+                guard let documents = snapshot?.documents else { return }
+                let comments = documents.map { Comment(dictinary: $0.data()) }
                 completion(comments)
             }
     }

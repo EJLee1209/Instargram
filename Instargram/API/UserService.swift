@@ -11,9 +11,8 @@ import Firebase
 typealias FirestoreCompletion = (Error?) -> Void
 
 struct UserService {
-    // 현재 로그인한 유저 데이터 가져오기
-    static func fetchUser(completion: @escaping(User) -> Void) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+    // 유저 데이터 가져오기
+    static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
         COLLECTION_USERS.document(uid).getDocument { snapshot, error in
             guard let dictionary = snapshot?.data() else { return }
             completion(User(dictionary: dictionary))
@@ -27,6 +26,7 @@ struct UserService {
             completion(users)
         }
     }
+    
     // 팔로우
     static func follow(uid: String, completion: @escaping FirestoreCompletion) {
         /*
