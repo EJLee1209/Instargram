@@ -10,14 +10,27 @@ import Firebase
 
 private let reuseIdentifier = "Cell"
 
+enum FeedMode {
+    case normal
+    case profile
+}
+
 class FeedController: UICollectionViewController {
     
     //MARK: - Properties
     var posts: [Post] = []
-    var post: Post?
+    let mode : FeedMode
+    
+    init(mode: FeedMode) {
+        self.mode = mode
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -27,10 +40,6 @@ class FeedController: UICollectionViewController {
     //MARK: - Actions
     
     @objc func handleRefresh() {
-        guard post == nil else {
-            collectionView.refreshControl?.endRefreshing()
-            return
-        }
         fetchPosts()
     }
     
@@ -49,12 +58,18 @@ class FeedController: UICollectionViewController {
     //MARK: - API
     
     func fetchPosts() {
-        guard post == nil else { return }
-        
-        PostService.fetchPosts { [weak self] posts in
-            self?.posts = posts
-            self?.collectionView.refreshControl?.endRefreshing()
-            self?.collectionView.reloadData()
+        if mode == .normal {
+            PostService.fetchPosts { [weak self] posts in
+                self?.posts = posts
+                self?.collectionView.refreshControl?.endRefreshing()
+                self?.collectionView.reloadData()
+            }
+        } else {
+            PostService.fetchPosts(forUser: nil) { [weak self] posts in
+                self?.posts = posts
+                self?.collectionView.refreshControl?.endRefreshing()
+                self?.collectionView.reloadData()
+            }
         }
     }
     
@@ -63,16 +78,15 @@ class FeedController: UICollectionViewController {
     func configureUI() {
         view.backgroundColor = .white
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        if post == nil {
+        navigationItem.title = "Feed"
+        if mode == .normal {
             navigationItem.leftBarButtonItem = UIBarButtonItem(
                 title: "Logout",
-                style: .plain,
+                style: .done,
                 target: self,
                 action: #selector(handleLogout)
             )
         }
-        
-        navigationItem.title = "Feed"
         
         let refresher = UIRefreshControl()
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
@@ -84,15 +98,11 @@ class FeedController: UICollectionViewController {
 
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return post == nil ? posts.count : 1
+        return posts.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
-        if let post = post {
-            cell.viewModel = PostViewModel(post: post)
-        } else {
-            cell.viewModel = PostViewModel(post: posts[indexPath.row])
-        }
+        cell.viewModel = PostViewModel(post: posts[indexPath.row])
         cell.delegate = self
         return cell
     }
@@ -118,19 +128,15 @@ extension FeedController: FeedCellDelegate {
     }
     
     func cell(_ cell: FeedCell, didLike post: Post) {
-        cell.viewModel?.post.didLike.toggle()
-       
-        if post.didLike {
-            print("DEBUG: Unlike post here...")
-        } else {
-            PostService.likePost(post: post) { error in
-                if let error = error {
-                    print("DEBUG: Failed to like post with \(error.localizedDescription)")
-                    return
-                }
-                cell.likeButton.setImage(#imageLiteral(resourceName: "like_selected"), for: .normal)
-                cell.likeButton.tintColor = .red
+        // 하트 버튼 눌렀을 때
+        cell.likeButton.isEnabled.toggle()
+        PostService.likeOrUnlikePost(post: post) { likedUsers, error in
+            cell.likeButton.isEnabled.toggle()
+            if let error = error {
+                print("DEBUG: likeOrUnlikePost Error \(error.localizedDescription)")
+                return
             }
+            cell.viewModel?.post.likedUsers = likedUsers
         }
     }
 }

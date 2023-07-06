@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		18685DEBCA332E46AEA889CA /* Pods_Instargram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D036DEE30B6D716DBFEEE52E /* Pods_Instargram.framework */; };
 		CF0C8D3A2A4EBE2F007F3C86 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C8D392A4EBE2F007F3C86 /* AuthenticationViewModel.swift */; };
-		CF0C8D3C2A4ECCF6007F3C86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF0C8D3B2A4ECCF6007F3C86 /* GoogleService-Info.plist */; };
 		CF197A4A2A4DBC8500F35185 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A492A4DBC8500F35185 /* AppDelegate.swift */; };
 		CF197A4C2A4DBC8500F35185 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A4B2A4DBC8500F35185 /* SceneDelegate.swift */; };
 		CF197A4E2A4DBC8500F35185 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A4D2A4DBC8500F35185 /* ViewController.swift */; };
@@ -48,6 +47,7 @@
 		CFAC13CA2A54459B00BEDC99 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC13C92A54459B00BEDC99 /* CommentService.swift */; };
 		CFAC13CC2A54493000BEDC99 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC13CB2A54493000BEDC99 /* Comment.swift */; };
 		CFAC13CE2A544B9F00BEDC99 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC13CD2A544B9F00BEDC99 /* CommentViewModel.swift */; };
+		CFC13F312A570383007EDBB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFC13F302A570383007EDBB7 /* GoogleService-Info.plist */; };
 		CFE802D62A4F2973003B2F88 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE802D52A4F2973003B2F88 /* CustomButton.swift */; };
 		CFECA67B2A4ED4E900F40CEE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67A2A4ED4E900F40CEE /* FirebaseAuth */; };
 		CFECA67D2A4ED4E900F40CEE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67C2A4ED4E900F40CEE /* FirebaseDatabase */; };
@@ -62,7 +62,6 @@
 /* Begin PBXFileReference section */
 		97B8E96F985E477CAE0E85F3 /* Pods-Instargram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram.release.xcconfig"; path = "Target Support Files/Pods-Instargram/Pods-Instargram.release.xcconfig"; sourceTree = "<group>"; };
 		CF0C8D392A4EBE2F007F3C86 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
-		CF0C8D3B2A4ECCF6007F3C86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF197A462A4DBC8500F35185 /* Instargram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instargram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF197A492A4DBC8500F35185 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF197A4B2A4DBC8500F35185 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +102,7 @@
 		CFAC13C92A54459B00BEDC99 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		CFAC13CB2A54493000BEDC99 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		CFAC13CD2A544B9F00BEDC99 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		CFC13F302A570383007EDBB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CFE802D52A4F2973003B2F88 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D036DEE30B6D716DBFEEE52E /* Pods_Instargram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instargram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D053CC0E33CABA65D5F02C4F /* Pods-Instargram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram.debug.xcconfig"; path = "Target Support Files/Pods-Instargram/Pods-Instargram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,9 +166,9 @@
 		CF197A482A4DBC8500F35185 /* Instargram */ = {
 			isa = PBXGroup;
 			children = (
+				CFC13F302A570383007EDBB7 /* GoogleService-Info.plist */,
 				CF197A492A4DBC8500F35185 /* AppDelegate.swift */,
 				CF197A4B2A4DBC8500F35185 /* SceneDelegate.swift */,
-				CF0C8D3B2A4ECCF6007F3C86 /* GoogleService-Info.plist */,
 				CF197A672A4DBD1000F35185 /* Model */,
 				CF197A662A4DBD0E00F35185 /* View */,
 				CF197A652A4DBD0C00F35185 /* ViewModel */,
@@ -361,7 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF197A562A4DBC8600F35185 /* LaunchScreen.storyboard in Resources */,
-				CF0C8D3C2A4ECCF6007F3C86 /* GoogleService-Info.plist in Resources */,
+				CFC13F312A570383007EDBB7 /* GoogleService-Info.plist in Resources */,
 				CF197A532A4DBC8600F35185 /* Assets.xcassets in Resources */,
 				CF197A512A4DBC8500F35185 /* Main.storyboard in Resources */,
 			);

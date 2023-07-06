@@ -147,10 +147,15 @@ class FeedCell: UICollectionViewCell {
     func configure() {
         guard let viewModel = viewModel else { return }
         captionLabel.text = viewModel.caption
-        likesLabel.text = viewModel.like
         usernameButton.setTitle(viewModel.ownerUsername, for: .normal)
         postImageView.sd_setImage(with: viewModel.imageUrl)
         profileImageView.sd_setImage(with: viewModel.ownerProfileImage)
+        likesLabel.text = viewModel.like
+        likeButton.setImage(
+            viewModel.isLiked ? #imageLiteral(resourceName: "like_selected") : #imageLiteral(resourceName: "like_unselected"),
+            for: .normal
+        )
+        likeButton.tintColor = viewModel.isLiked ? .systemRed : .black
     }
     
     func configureActionButtons() {

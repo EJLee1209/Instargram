@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct PostViewModel {
     var post: Post
@@ -19,7 +20,12 @@ struct PostViewModel {
     var caption: String { return post.caption }
     
     var like: String {
-        return post.likes == 1 ? "\(post.likes) like" : "\(post.likes) likes"
+        return post.likedUsers.count == 1 ? "\(post.likedUsers.count) like" : "\(post.likedUsers.count) likes"
+    }
+    
+    var isLiked: Bool {
+        guard let uid = Auth.auth().currentUser?.uid else { return false }
+        return post.likedUsers.contains(uid)
     }
     
     init(post: Post) {
