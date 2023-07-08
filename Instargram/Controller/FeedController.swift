@@ -139,4 +139,11 @@ extension FeedController: FeedCellDelegate {
             cell.viewModel?.post.likedUsers = likedUsers
         }
     }
+    
+    func cell(_ cell: FeedCell, wantsToShowProfileFor uid: String) {
+        UserService.fetchUser(withUid: uid) { [weak self] user in
+            let controller = ProfileController(user: user)
+            self?.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }
