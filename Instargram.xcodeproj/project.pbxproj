@@ -50,6 +50,7 @@
 		CFC13F312A570383007EDBB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFC13F302A570383007EDBB7 /* GoogleService-Info.plist */; };
 		CFE399122A5989C60051F1CB /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE399112A5989C60051F1CB /* NotificationCell.swift */; };
 		CFE399142A59A39D0051F1CB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE399132A59A39D0051F1CB /* Notification.swift */; };
+		CFE399162A59A5F60051F1CB /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE399152A59A5F60051F1CB /* NotificationService.swift */; };
 		CFE802D62A4F2973003B2F88 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE802D52A4F2973003B2F88 /* CustomButton.swift */; };
 		CFECA67B2A4ED4E900F40CEE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67A2A4ED4E900F40CEE /* FirebaseAuth */; };
 		CFECA67D2A4ED4E900F40CEE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67C2A4ED4E900F40CEE /* FirebaseDatabase */; };
@@ -107,6 +108,7 @@
 		CFC13F302A570383007EDBB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CFE399112A5989C60051F1CB /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		CFE399132A59A39D0051F1CB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		CFE399152A59A5F60051F1CB /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		CFE802D52A4F2973003B2F88 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D036DEE30B6D716DBFEEE52E /* Pods_Instargram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instargram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D053CC0E33CABA65D5F02C4F /* Pods-Instargram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram.debug.xcconfig"; path = "Target Support Files/Pods-Instargram/Pods-Instargram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				CFA9C92F2A501AF500F673AB /* UserService.swift */,
 				CF25246E2A529815005EC5BE /* PostService.swift */,
 				CFAC13C92A54459B00BEDC99 /* CommentService.swift */,
+				CFE399152A59A5F60051F1CB /* NotificationService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				CFAC13CE2A544B9F00BEDC99 /* CommentViewModel.swift in Sources */,
 				CFA9C93B2A507B3500F673AB /* UserCellViewModel.swift in Sources */,
 				CFE399122A5989C60051F1CB /* NotificationCell.swift in Sources */,
+				CFE399162A59A5F60051F1CB /* NotificationService.swift in Sources */,
 				CF197A4A2A4DBC8500F35185 /* AppDelegate.swift in Sources */,
 				CF197A6A2A4DBDAD00F35185 /* MainTabController.swift in Sources */,
 				CF25246F2A529815005EC5BE /* PostService.swift in Sources */,

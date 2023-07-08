@@ -132,10 +132,6 @@ extension FeedController: FeedCellDelegate {
         cell.likeButton.isEnabled.toggle()
         PostService.likeOrUnlikePost(post: post) { likedUsers, error in
             cell.likeButton.isEnabled.toggle()
-            if let error = error {
-                print("DEBUG: likeOrUnlikePost Error \(error.localizedDescription)")
-                return
-            }
             cell.viewModel?.post.likedUsers = likedUsers
         }
     }

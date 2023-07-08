@@ -62,7 +62,8 @@ struct PostService {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let ref = COLLECTION_POSTS.document(post.postId)
-        var likedUsers: [String] = []
+        var likedUsers: [String] = post.likedUsers
+        var isLike = false
         
         ref.firestore.runTransaction({ transaction, errorPointer in
             let postDocument: DocumentSnapshot
@@ -80,11 +81,15 @@ struct PostService {
                 likedUsers.removeAll { $0 == uid }
             } else {
                 likedUsers.append(uid)
+                isLike = true
             }
             transaction.updateData(["likedUsers": likedUsers], forDocument: ref)
             
             return nil
         }, completion: { _, error in
+            if isLike {
+                NotificationService.uploadNotification(toUid: post.ownerUid, type: .like, post: post)
+            }
             completion(likedUsers, error)
         })
 
