@@ -49,6 +49,7 @@
 		CFAC13CE2A544B9F00BEDC99 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC13CD2A544B9F00BEDC99 /* CommentViewModel.swift */; };
 		CFC13F312A570383007EDBB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFC13F302A570383007EDBB7 /* GoogleService-Info.plist */; };
 		CFE399122A5989C60051F1CB /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE399112A5989C60051F1CB /* NotificationCell.swift */; };
+		CFE399142A59A39D0051F1CB /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE399132A59A39D0051F1CB /* Notification.swift */; };
 		CFE802D62A4F2973003B2F88 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE802D52A4F2973003B2F88 /* CustomButton.swift */; };
 		CFECA67B2A4ED4E900F40CEE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67A2A4ED4E900F40CEE /* FirebaseAuth */; };
 		CFECA67D2A4ED4E900F40CEE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CFECA67C2A4ED4E900F40CEE /* FirebaseDatabase */; };
@@ -105,6 +106,7 @@
 		CFAC13CD2A544B9F00BEDC99 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		CFC13F302A570383007EDBB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CFE399112A5989C60051F1CB /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		CFE399132A59A39D0051F1CB /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		CFE802D52A4F2973003B2F88 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D036DEE30B6D716DBFEEE52E /* Pods_Instargram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instargram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D053CC0E33CABA65D5F02C4F /* Pods-Instargram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram.debug.xcconfig"; path = "Target Support Files/Pods-Instargram/Pods-Instargram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				CFA9C9332A501C6000F673AB /* User.swift */,
 				CF2524702A52B039005EC5BE /* Post.swift */,
 				CFAC13CB2A54493000BEDC99 /* Comment.swift */,
+				CFE399132A59A39D0051F1CB /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				CFA9C92D2A50101E00F673AB /* ProfileHeader.swift in Sources */,
 				CF25247B2A5301D5005EC5BE /* CommentInputAccesoryView.swift in Sources */,
 				CF197A6E2A4DBEE100F35185 /* SearchController.swift in Sources */,
+				CFE399142A59A39D0051F1CB /* Notification.swift in Sources */,
 				CF197A6C2A4DBED000F35185 /* FeedController.swift in Sources */,
 				CF25246D2A528FD3005EC5BE /* InputTextView.swift in Sources */,
 				CFA9C9392A503ECC00F673AB /* UserCell.swift in Sources */,
