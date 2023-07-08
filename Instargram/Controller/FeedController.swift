@@ -129,8 +129,12 @@ extension FeedController: FeedCellDelegate {
     
     func cell(_ cell: FeedCell, didLike post: Post) {
         // 하트 버튼 눌렀을 때
+        guard let main = tabBarController as? MainTabController else { return }
+        guard let user = main.user else { return }
+        
         cell.likeButton.isEnabled.toggle()
-        PostService.likeOrUnlikePost(post: post) { likedUsers, error in
+        
+        PostService.likeOrUnlikePost(post: post, currentUser: user) { likedUsers, error in
             cell.likeButton.isEnabled.toggle()
             cell.viewModel?.post.likedUsers = likedUsers
         }

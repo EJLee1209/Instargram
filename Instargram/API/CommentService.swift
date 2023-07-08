@@ -38,7 +38,7 @@ struct CommentService {
             .order(by: "timestamp", descending: true)
             .addSnapshotListener { snapshot, error in
                 guard let documents = snapshot?.documents else { return }
-                let comments = documents.map { Comment(dictinary: $0.data()) }
+                let comments = documents.map { Comment(dictionary: $0.data()) }
                 completion(comments)
             }
     }

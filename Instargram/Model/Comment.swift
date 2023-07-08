@@ -14,11 +14,11 @@ struct Comment {
     let commentText: String
     let timestamp: Timestamp
     
-    init(dictinary: [String: Any]) {
-        self.uid = dictinary["uid"] as? String ?? ""
-        self.username = dictinary["username"] as? String ?? ""
-        self.profileImageUrl = dictinary["profileImageUrl"] as? String ?? ""
-        self.commentText = dictinary["comment"] as? String ?? ""
-        self.timestamp = dictinary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
+    init(dictionary: [String: Any]) {
+        self.uid = dictionary["uid"] as? String ?? ""
+        self.username = dictionary["username"] as? String ?? ""
+        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+        self.commentText = dictionary["comment"] as? String ?? ""
+        self.timestamp = dictionary["timestamp"] as? Timestamp ?? Timestamp(date: Date())
     }
 }

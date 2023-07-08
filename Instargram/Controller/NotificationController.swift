@@ -13,6 +13,7 @@ class NotificationController: UITableViewController {
     
     //MARK: - Properties
     
+    var notifications: [Notification] = []
     
     
     //MARK: - LifeCycle
@@ -33,16 +34,26 @@ class NotificationController: UITableViewController {
         tableView.separatorStyle = .none
         
     }
+    
+    //MARK: - API
+    
+    func fetchNotifications() {
+        NotificationService.fetchNotification { [weak self] notifications in
+            self?.notifications = notifications
+            self?.tableView.reloadData()
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource
 
 extension NotificationController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return notifications.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NotificationCell
+        
         return cell
     }
     

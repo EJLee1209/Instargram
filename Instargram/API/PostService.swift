@@ -58,8 +58,7 @@ struct PostService {
     }
     
     
-    static func likeOrUnlikePost(post: Post, completion: @escaping ([String], Error?) -> Void) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+    static func likeOrUnlikePost(post: Post, currentUser: User, completion: @escaping ([String], Error?) -> Void) {
         
         let ref = COLLECTION_POSTS.document(post.postId)
         var likedUsers: [String] = post.likedUsers
@@ -77,10 +76,10 @@ struct PostService {
             guard let data = postDocument.data()?["likedUsers"] as? [String] else { return nil }
             likedUsers = data
             
-            if likedUsers.contains(uid) {
-                likedUsers.removeAll { $0 == uid }
+            if likedUsers.contains(currentUser.uid) {
+                likedUsers.removeAll { $0 == currentUser.uid }
             } else {
-                likedUsers.append(uid)
+                likedUsers.append(currentUser.uid)
                 isLike = true
             }
             transaction.updateData(["likedUsers": likedUsers], forDocument: ref)
@@ -88,7 +87,7 @@ struct PostService {
             return nil
         }, completion: { _, error in
             if isLike {
-                NotificationService.uploadNotification(toUid: post.ownerUid, type: .like, post: post)
+                NotificationService.uploadNotification(toUid: post.ownerUid, fromUser: currentUser, type: .like)
             }
             completion(likedUsers, error)
         })

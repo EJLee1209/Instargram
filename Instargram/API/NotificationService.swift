@@ -9,9 +9,15 @@ import Firebase
 
 struct NotificationService {
     
-    static func uploadNotification(toUid uid: String, type: NotificationType, post: Post? = nil) {
-        guard let currentUid = Auth.auth().currentUser?.uid else { return }
-        guard uid != currentUid else { return }
+    private static var listenerRegistration: ListenerRegistration?
+    
+    static func uploadNotification(
+        toUid uid: String, // 받는 사람의 uid
+        fromUser user: User, // 보내는 사람
+        type: NotificationType,
+        post: Post? = nil
+    ){
+        guard uid != user.uid else { return }
         
         let docRef = COLLECTION_NOTIFICATIONS
             .document(uid)
@@ -21,8 +27,10 @@ struct NotificationService {
         var data: [String: Any] = [
             "id": docRef.documentID,
             "timestamp": Timestamp(date: Date()),
-            "uid": currentUid,
+            "uid": user.uid,
             "type": type.rawValue,
+            "userProfileImageUrl": user.profileImageUrl,
+            "username": user.username
         ]
         
         if let post = post {
@@ -33,7 +41,21 @@ struct NotificationService {
         docRef.setData(data)
     }
     
-    static func fetchNotification() {
+    static func fetchNotification(completion: @escaping ([Notification]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         
+        listenerRegistration = COLLECTION_NOTIFICATIONS
+            .document(uid)
+            .collection("user-notifications")
+            .addSnapshotListener { snapshot, error in
+                guard let documents = snapshot?.documents else { return }
+                let notifications = documents.map { Notification(dictionary: $0.data()) }
+                
+                completion(notifications)
+            }
+    }
+    
+    static func removeRegistration() {
+        listenerRegistration?.remove()
     }
 }
