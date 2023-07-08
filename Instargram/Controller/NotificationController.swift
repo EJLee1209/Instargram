@@ -21,7 +21,12 @@ class NotificationController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        
+        fetchNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationService.removeRegistration()
     }
     
     //MARK: - Helpers
@@ -53,7 +58,7 @@ extension NotificationController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NotificationCell
-        
+        cell.viewModel = NotificationViewModel(notification: notifications[indexPath.row])
         return cell
     }
     

@@ -87,13 +87,10 @@ struct PostService {
             return nil
         }, completion: { _, error in
             if isLike {
-                NotificationService.uploadNotification(toUid: post.ownerUid, fromUser: currentUser, type: .like)
+                NotificationService.uploadNotification(toUid: post.ownerUid, fromUser: currentUser, type: .like, post: post)
             }
             completion(likedUsers, error)
         })
 
-        
-        
-        
     }
 }

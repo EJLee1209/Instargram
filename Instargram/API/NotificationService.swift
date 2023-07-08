@@ -47,6 +47,7 @@ struct NotificationService {
         listenerRegistration = COLLECTION_NOTIFICATIONS
             .document(uid)
             .collection("user-notifications")
+            .order(by: "timestamp", descending: true)
             .addSnapshotListener { snapshot, error in
                 guard let documents = snapshot?.documents else { return }
                 let notifications = documents.map { Notification(dictionary: $0.data()) }
