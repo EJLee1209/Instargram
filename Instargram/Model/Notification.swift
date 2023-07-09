@@ -31,6 +31,8 @@ struct Notification {
     let userProfileImageUrl: String
     let username: String
     
+    var isFollowed: Bool = false
+    
     init(dictionary: [String: Any]) {
         self.uid = dictionary["uid"] as? String ?? ""
         self.postImageUrl = dictionary["postImageUrl"] as? String ?? ""

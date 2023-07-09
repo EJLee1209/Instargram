@@ -48,6 +48,12 @@ class NotificationController: UITableViewController {
             self?.tableView.reloadData()
         }
     }
+    
+    func checkIfUserIsFollowed() {
+        notifications.forEach { notifications in
+            
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -59,6 +65,7 @@ extension NotificationController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NotificationCell
         cell.viewModel = NotificationViewModel(notification: notifications[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -68,6 +75,24 @@ extension NotificationController {
 extension NotificationController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
 }
 
+//MARK: - NotificationCellDelegate
+extension NotificationController: NotificationCellDelegate {
+    func cell(_ cell: NotificationCell, wantsToFollow uid: String) {
+        print("DEBUG: Follow here...")
+        guard let viewModel = cell.viewModel else { return }
+        viewModel.notification.isFollowed.toggle()
+    }
+    func cell(_ cell: NotificationCell, wantsToUnfollow uid: String) {
+        print("DEBUG: Unfollow here...")
+        guard let viewModel = cell.viewModel else { return }
+        viewModel.notification.isFollowed.toggle()
+    }
+    func cell(_ cell: NotificationCell, wantsToViewPost postId: String) {
+        print("DEBUG: Show post here..")
+        
+    }
+}

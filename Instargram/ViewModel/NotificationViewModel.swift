@@ -7,11 +7,23 @@
 
 import UIKit
 
-struct NotificationViewModel {
-    let notification: Notification
+class NotificationViewModel {
+    var notification: Notification {
+        didSet {
+            notificationObserver()
+        }
+    }
+    
+    var notificationObserver : () -> Void = {}
     
     init(notification: Notification) {
         self.notification = notification
+        
+        if notification.type == .follow {
+            UserService.checkIfUserIsFollowed(uid: notification.uid) { [weak self] isFollowed in
+                self?.notification.isFollowed = isFollowed
+            }
+        }
     }
     
     var postImageUrl: URL? {
@@ -45,5 +57,14 @@ struct NotificationViewModel {
     var shouldHidePostImage: Bool {
         return notification.type == .follow
     }
+    
+    var buttonTitle: String {
+        return notification.isFollowed ? "UnFollow" : "Follow"
+    }
+    
+    var buttonBackgroundColor: UIColor {
+        return notification.isFollowed ? .systemOrange : .systemBlue
+    }
+    
     
 }

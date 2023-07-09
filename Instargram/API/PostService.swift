@@ -91,6 +91,5 @@ struct PostService {
             }
             completion(likedUsers, error)
         })
-
     }
 }

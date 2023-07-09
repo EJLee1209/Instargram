@@ -7,9 +7,17 @@
 
 import UIKit
 
+protocol NotificationCellDelegate: AnyObject {
+    func cell(_ cell: NotificationCell, wantsToFollow uid: String)
+    func cell(_ cell: NotificationCell, wantsToUnfollow uid: String)
+    func cell(_ cell: NotificationCell, wantsToViewPost postId: String)
+}
+
 class NotificationCell: UITableViewCell {
     
     //MARK: - Properties
+    
+    weak var delegate: NotificationCellDelegate?
     
     var viewModel: NotificationViewModel? {
         didSet {
@@ -33,7 +41,7 @@ class NotificationCell: UITableViewCell {
         return label
     }()
     
-    private let postImageView: UIImageView = {
+    private lazy var postImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
@@ -45,7 +53,7 @@ class NotificationCell: UITableViewCell {
         return iv
     }()
     
-    private let followButton: UIButton = {
+    private lazy var followButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Loading", for: .normal)
         button.layer.cornerRadius = 3
@@ -87,11 +95,18 @@ class NotificationCell: UITableViewCell {
     
     //MARK: - Actions
     @objc func handleFollowTapped() {
+        guard let viewModel = viewModel else { return }
         
+        if viewModel.notification.isFollowed {
+            delegate?.cell(self, wantsToUnfollow: viewModel.notification.uid)
+        } else {
+            delegate?.cell(self, wantsToFollow: viewModel.notification.uid)
+        }
     }
     
     @objc func handlePostTapped() {
-        
+        guard let postId = viewModel?.notification.postId else { return }
+        delegate?.cell(self, wantsToViewPost: postId)
     }
     
     //MARK: - Helpers
@@ -104,6 +119,12 @@ class NotificationCell: UITableViewCell {
         
         followButton.isHidden = !viewModel.shouldHidePostImage
         postImageView.isHidden = viewModel.shouldHidePostImage
+        
+        viewModel.notificationObserver = { [weak self] in
+            self?.followButton.setTitle(viewModel.buttonTitle, for: .normal)
+            self?.followButton.setTitleColor(.white, for: .normal)
+            self?.followButton.backgroundColor = viewModel.buttonBackgroundColor
+        }
     }
     
 }
