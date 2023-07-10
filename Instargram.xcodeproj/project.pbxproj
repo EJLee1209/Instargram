@@ -28,6 +28,8 @@
 		CF197A7F2A4DDB5000F35185 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */; };
 		CF1B3F142A5C1BFE00F2A122 /* DirectMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F132A5C1BFE00F2A122 /* DirectMessageController.swift */; };
 		CF1B3F162A5C1C9100F2A122 /* DirectMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F152A5C1C9100F2A122 /* DirectMessageCell.swift */; };
+		CF1B3F182A5C23B600F2A122 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F172A5C23B600F2A122 /* NewMessageController.swift */; };
+		CF1B3F1A2A5C388600F2A122 /* NewMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F192A5C388600F2A122 /* NewMessageHeader.swift */; };
 		CF25246B2A528D78005EC5BE /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25246A2A528D78005EC5BE /* UploadPostController.swift */; };
 		CF25246D2A528FD3005EC5BE /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25246C2A528FD3005EC5BE /* InputTextView.swift */; };
 		CF25246F2A529815005EC5BE /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25246E2A529815005EC5BE /* PostService.swift */; };
@@ -89,6 +91,8 @@
 		CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CF1B3F132A5C1BFE00F2A122 /* DirectMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageController.swift; sourceTree = "<group>"; };
 		CF1B3F152A5C1C9100F2A122 /* DirectMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageCell.swift; sourceTree = "<group>"; };
+		CF1B3F172A5C23B600F2A122 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		CF1B3F192A5C388600F2A122 /* NewMessageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageHeader.swift; sourceTree = "<group>"; };
 		CF25246A2A528D78005EC5BE /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		CF25246C2A528FD3005EC5BE /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		CF25246E2A529815005EC5BE /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				CF25246A2A528D78005EC5BE /* UploadPostController.swift */,
 				CF2524762A52FB1E005EC5BE /* CommentController.swift */,
 				CF1B3F132A5C1BFE00F2A122 /* DirectMessageController.swift */,
+				CF1B3F172A5C23B600F2A122 /* NewMessageController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 				CF25247A2A5301D5005EC5BE /* CommentInputAccesoryView.swift */,
 				CFE399112A5989C60051F1CB /* NotificationCell.swift */,
 				CF1B3F152A5C1C9100F2A122 /* DirectMessageCell.swift */,
+				CF1B3F192A5C388600F2A122 /* NewMessageHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 				CF25247B2A5301D5005EC5BE /* CommentInputAccesoryView.swift in Sources */,
 				CF1B3F162A5C1C9100F2A122 /* DirectMessageCell.swift in Sources */,
 				CF197A6E2A4DBEE100F35185 /* SearchController.swift in Sources */,
+				CF1B3F1A2A5C388600F2A122 /* NewMessageHeader.swift in Sources */,
 				CFE399142A59A39D0051F1CB /* Notification.swift in Sources */,
 				CF197A6C2A4DBED000F35185 /* FeedController.swift in Sources */,
 				CF25246D2A528FD3005EC5BE /* InputTextView.swift in Sources */,
@@ -470,6 +477,7 @@
 				CF25246F2A529815005EC5BE /* PostService.swift in Sources */,
 				CFA9C9302A501AF500F673AB /* UserService.swift in Sources */,
 				CF1B3F142A5C1BFE00F2A122 /* DirectMessageController.swift in Sources */,
+				CF1B3F182A5C23B600F2A122 /* NewMessageController.swift in Sources */,
 				CF197A782A4DCA4B00F35185 /* Extensions.swift in Sources */,
 				CFA467522A4EDA8300EABDC9 /* ImageUploader.swift in Sources */,
 				CFA9C92B2A50101500F673AB /* ProfileCell.swift in Sources */,
