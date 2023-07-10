@@ -62,6 +62,12 @@ class FeedController: UICollectionViewController {
             print("DEBUG: Failed to sign out")
         }
     }
+    
+    @objc func handleDirectMessage() {
+        let controller = DirectMessageController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     //MARK: - API
     
     func fetchPosts() {
@@ -93,6 +99,12 @@ class FeedController: UICollectionViewController {
                 style: .done,
                 target: self,
                 action: #selector(handleLogout)
+            )
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                image: #imageLiteral(resourceName: "send2"),
+                style: .plain,
+                target: self,
+                action: #selector(handleDirectMessage)
             )
         }
         
