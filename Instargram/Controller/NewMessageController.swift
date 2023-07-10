@@ -13,6 +13,7 @@ class NewMessageController: UITableViewController {
     
     //MARK: - Properties
     
+    var users : [User] = []
     
     //MARK: - LifeCycle
     
@@ -20,7 +21,7 @@ class NewMessageController: UITableViewController {
         super.viewDidLoad()
         
         configureTableView()
-        
+        fetchFriends()
     }
     
     //MARK: - Helpers
@@ -31,6 +32,16 @@ class NewMessageController: UITableViewController {
         tableView.rowHeight = 64
     }
     
+    //MARK: - API
+    
+    func fetchFriends() {
+        showLoader(true)
+        UserService.fetchFollowingUsers { [weak self] users in
+            self?.users = users
+            self?.tableView.reloadData()
+            self?.showLoader(false)
+        }
+    }
 }
 
 
@@ -38,10 +49,11 @@ class NewMessageController: UITableViewController {
 
 extension NewMessageController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return users.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! UserCell
+        cell.viewModel = UserCellViewModel(user: users[indexPath.row])
         return cell
     }
     // header 높이

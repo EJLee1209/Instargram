@@ -126,4 +126,21 @@ struct UserService {
             }
     }
     
+    static func fetchFollowingUsers(completion: @escaping([User]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        fetchFollowing(uid: uid) { following in
+            COLLECTION_USERS
+                .whereField("uid", in: following)
+                .getDocuments { snapshot, _ in
+                    guard let documents = snapshot?.documents else {
+                        completion([])
+                        return
+                    }
+                    let users = documents.map{ User(dictionary: $0.data()) }
+                    completion(users)
+                }
+        }
+
+    }
+    
 }
