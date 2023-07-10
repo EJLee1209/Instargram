@@ -149,7 +149,10 @@ extension FeedController: FeedCellDelegate {
         
         PostService.likeOrUnlikePost(post: post, currentUser: user) { likedUsers, error in
             cell.likeButton.isEnabled.toggle()
-            cell.viewModel?.post.likedUsers = likedUsers
+            if let index = self.posts.firstIndex(where: { $0.postId == post.postId })?.advanced(by: 0) {
+                self.posts[index].likedUsers = likedUsers
+                self.collectionView.reloadData()
+            }
         }
     }
     
