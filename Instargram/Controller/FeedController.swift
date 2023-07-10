@@ -40,7 +40,8 @@ class FeedController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        fetchPosts()
+        if mode == .normal { fetchPosts() }
+        
     }
     
     //MARK: - Actions
@@ -71,7 +72,8 @@ class FeedController: UICollectionViewController {
                 self?.collectionView.reloadData()
             }
         } else if mode == .profile {
-            PostService.fetchPosts(forUser: nil) { [weak self] posts in
+            guard let forUserUid = posts.first?.ownerUid else { return }
+            PostService.fetchPosts(forUser: forUserUid) { [weak self] posts in
                 self?.posts = posts
                 self?.collectionView.refreshControl?.endRefreshing()
                 self?.collectionView.reloadData()
