@@ -33,14 +33,22 @@ struct PostService {
     }
     
     static func fetchPosts(completion: @escaping ([Post]) -> Void ) {
-        COLLECTION_POSTS
-            .order(by: "timestamp", descending: true)
-            .getDocuments { snapshot, error in
-                guard let documents = snapshot?.documents else { return }
-                
-                let posts = documents.map{ Post(postId: $0.documentID, dictionary: $0.data()) }
-                completion(posts)
-            }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        UserService.fetchFollowing(uid: uid) { following in
+            var followingWithMe = following
+            followingWithMe.append(uid) // 내 게시물도 봐야해서 현재 유저의 uid를 추가함
+            
+            COLLECTION_POSTS
+                .whereField("ownerUid", in: followingWithMe)
+                .order(by: "timestamp", descending: true)
+                .getDocuments { snapshot, error in
+                    guard let documents = snapshot?.documents else { return }
+                    
+                    let posts = documents.map{ Post(postId: $0.documentID, dictionary: $0.data()) }
+                    completion(posts)
+                }
+        }
     }
     
     static func fetchPosts(forUser uid: String?, completion: @escaping([Post]) -> Void) {

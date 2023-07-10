@@ -99,6 +99,12 @@ class ProfileHeader: UICollectionReusableView {
         return button
     }()
     
+    private lazy var stackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [postsLabel, followersLabel, followingLabel])
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
     
     //MARK: - LifeCycle
     override init(frame: CGRect) {
@@ -133,12 +139,9 @@ class ProfileHeader: UICollectionReusableView {
             paddingRight: 24
         )
         
-        let stack = UIStackView(arrangedSubviews: [postsLabel, followersLabel, followingLabel])
-        stack.distribution = .fillEqually
-        
-        addSubview(stack)
-        stack.centerY(inView: profileImageView)
-        stack.anchor(
+        addSubview(stackView)
+        stackView.centerY(inView: profileImageView)
+        stackView.anchor(
             left: profileImageView.rightAnchor,
             right: rightAnchor,
             paddingLeft: 12,
@@ -181,6 +184,14 @@ class ProfileHeader: UICollectionReusableView {
             }
             
         }
+    }
+    
+    @objc func tappedFollowers() {
+        print("DEBUG: Follower 보기")
+    }
+    
+    @objc func tappedFollowings() {
+        print("DEBUG: Following 보기")
     }
     
     //MARK: - Helpers

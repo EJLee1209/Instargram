@@ -109,4 +109,21 @@ struct UserService {
                     }
             }
     }
+    
+    // 유저가 팔로우 중인 사람들의 uid 가져오기
+    static func fetchFollowing(uid: String, completion: @escaping([String]) -> Void) {
+        COLLECTION_FOLLOWING
+            .document(uid)
+            .collection("user-following")
+            .getDocuments { snapshot, _ in
+                guard let documents =  snapshot?.documents else {
+                    completion([])
+                    return
+                }
+                
+                let following = documents.map{ $0.documentID }
+                completion(following)
+            }
+    }
+    
 }

@@ -29,7 +29,6 @@ class FeedCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.isUserInteractionEnabled = true
         iv.backgroundColor = .lightGray
         let tap = UITapGestureRecognizer(target: self, action: #selector(showUserProfile))
         iv.isUserInteractionEnabled = true
