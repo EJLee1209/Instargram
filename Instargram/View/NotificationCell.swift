@@ -53,7 +53,7 @@ class NotificationCell: UITableViewCell {
         return iv
     }()
     
-    private lazy var followButton: UIButton = {
+    lazy var followButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Loading", for: .normal)
         button.layer.cornerRadius = 3
@@ -121,6 +121,7 @@ class NotificationCell: UITableViewCell {
         postImageView.isHidden = viewModel.shouldHidePostImage
         
         viewModel.notificationObserver = { [weak self] in
+            
             self?.followButton.setTitle(viewModel.buttonTitle, for: .normal)
             self?.followButton.setTitleColor(.white, for: .normal)
             self?.followButton.backgroundColor = viewModel.buttonBackgroundColor

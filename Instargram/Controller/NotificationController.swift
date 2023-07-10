@@ -15,12 +15,18 @@ class NotificationController: UITableViewController {
     
     var notifications: [Notification] = []
     
+    private let refresher = UIRefreshControl()
+    
     
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         fetchNotifications()
     }
     
@@ -37,7 +43,8 @@ class NotificationController: UITableViewController {
         tableView.register(NotificationCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
-        
+        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        tableView.refreshControl = refresher
     }
     
     //MARK: - API
@@ -46,13 +53,14 @@ class NotificationController: UITableViewController {
         NotificationService.fetchNotification { [weak self] notifications in
             self?.notifications = notifications
             self?.tableView.reloadData()
+            print("DEBUG: 새로운 알림 도착")
         }
     }
     
-    func checkIfUserIsFollowed() {
-        notifications.forEach { notifications in
-            
-        }
+    //MARK: - Actions
+    @objc func handleRefresh() {
+        fetchNotifications()
+        refresher.endRefreshing()
     }
 }
 
@@ -75,24 +83,47 @@ extension NotificationController {
 extension NotificationController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
 }
 
 //MARK: - NotificationCellDelegate
 extension NotificationController: NotificationCellDelegate {
     func cell(_ cell: NotificationCell, wantsToFollow uid: String) {
-        print("DEBUG: Follow here...")
         guard let viewModel = cell.viewModel else { return }
-        viewModel.notification.isFollowed.toggle()
+        cell.followButton.isEnabled = false
+        cell.followButton.backgroundColor = .lightGray
+        UserService.follow(uid: uid) { error in
+            cell.followButton.isEnabled = true
+            cell.followButton.backgroundColor = viewModel.buttonBackgroundColor
+            if let error = error {
+                print("DEBUG: 유저 팔로우 에러 발생 \(error.localizedDescription)")
+                return
+            }
+            viewModel.notification.isFollowed.toggle()
+        }
+        
     }
     func cell(_ cell: NotificationCell, wantsToUnfollow uid: String) {
-        print("DEBUG: Unfollow here...")
         guard let viewModel = cell.viewModel else { return }
+        cell.followButton.isEnabled = false
+        cell.followButton.backgroundColor = .lightGray
+        UserService.unfollow(uid: uid) { error in
+            cell.followButton.isEnabled = true
+            cell.followButton.backgroundColor = viewModel.buttonBackgroundColor
+            if let error = error {
+                print("DEBUG: 유저 언팔로우 에러 발생 \(error.localizedDescription)")
+                return
+            }
+        }
         viewModel.notification.isFollowed.toggle()
     }
     func cell(_ cell: NotificationCell, wantsToViewPost postId: String) {
-        print("DEBUG: Show post here..")
-        
+        showLoader(true)
+        PostService.fetchPost(withPostId: postId) { [weak self] post in
+            self?.showLoader(false)
+            let controller = FeedController(mode: .notification)
+            controller.post = post
+            self?.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

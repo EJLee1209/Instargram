@@ -13,12 +13,18 @@ private let reuseIdentifier = "Cell"
 enum FeedMode {
     case normal
     case profile
+    case notification
 }
 
 class FeedController: UICollectionViewController {
     
     //MARK: - Properties
     var posts: [Post] = []
+    var post: Post? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     let mode : FeedMode
     
     init(mode: FeedMode) {
@@ -64,7 +70,7 @@ class FeedController: UICollectionViewController {
                 self?.collectionView.refreshControl?.endRefreshing()
                 self?.collectionView.reloadData()
             }
-        } else {
+        } else if mode == .profile {
             PostService.fetchPosts(forUser: nil) { [weak self] posts in
                 self?.posts = posts
                 self?.collectionView.refreshControl?.endRefreshing()
@@ -88,6 +94,8 @@ class FeedController: UICollectionViewController {
             )
         }
         
+        if mode == .notification { return }
+        
         let refresher = UIRefreshControl()
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView.refreshControl = refresher
@@ -98,11 +106,16 @@ class FeedController: UICollectionViewController {
 
 extension FeedController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
+        return mode == .notification ? 1 : posts.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
-        cell.viewModel = PostViewModel(post: posts[indexPath.row])
+        if mode == .notification {
+            guard let post = post else { return cell }
+            cell.viewModel = PostViewModel(post: post)
+        } else {
+            cell.viewModel = PostViewModel(post: posts[indexPath.row])
+        }
         cell.delegate = self
         return cell
     }
@@ -141,7 +154,9 @@ extension FeedController: FeedCellDelegate {
     }
     
     func cell(_ cell: FeedCell, wantsToShowProfileFor uid: String) {
+        showLoader(true)
         UserService.fetchUser(withUid: uid) { [weak self] user in
+            self?.showLoader(false)
             let controller = ProfileController(user: user)
             self?.navigationController?.pushViewController(controller, animated: true)
         }

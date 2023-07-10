@@ -57,6 +57,15 @@ struct PostService {
             }
     }
     
+    static func fetchPost(withPostId postId: String, completion: @escaping(Post) -> Void) {
+        COLLECTION_POSTS
+            .document(postId)
+            .getDocument { document, _ in
+                guard let documentData = document?.data() else { return }
+                completion(Post(postId: postId, dictionary: documentData))
+            }
+            
+    }
     
     static func likeOrUnlikePost(post: Post, currentUser: User, completion: @escaping ([String], Error?) -> Void) {
         
