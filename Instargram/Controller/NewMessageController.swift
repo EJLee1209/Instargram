@@ -78,6 +78,12 @@ extension NewMessageController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if searchMode {
+            print("DEBUG: \(filteredUsers[indexPath.row].fullname)님과 새로운 채팅을 시작합니다")
+        } else {
+            print("DEBUG: \(users[indexPath.row].fullname)님과 새로운 채팅을 시작합니다")
+        }
+        
     }
 }
 

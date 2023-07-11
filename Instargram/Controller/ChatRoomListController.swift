@@ -9,24 +9,25 @@ import UIKit
 
 private let reuseIdentifier = "directMessageCell"
 
-class DirectMessageController: UITableViewController {
+class ChatRoomListController: UITableViewController {
     
     //MARK: - Properties
-    
-    
+    var chatRooms: [ChatRoom] = []
+        
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+        fetchMessageList()
     }
     
     //MARK: - Helpers
     func configureUI() {
         view.backgroundColor = .white
         title = "Messages"
-        tableView.register(DirectMessageCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(ChatRoomCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 80
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -36,6 +37,18 @@ class DirectMessageController: UITableViewController {
             action: #selector(handleNewMessage)
         )
     }
+    
+    //MARK: - API
+    
+    func fetchMessageList() {
+        MessagingService.fetchChatRooms { [weak self] rooms in
+            self?.chatRooms = rooms
+            print("DEBUG: \(rooms)")
+            self?.tableView.reloadData()
+        }
+        
+    }
+
     
     //MARK: - Actions
     
@@ -49,21 +62,23 @@ class DirectMessageController: UITableViewController {
 
 //MARK: - UITableViewDataSource
 
-extension DirectMessageController {
+extension ChatRoomListController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return chatRooms.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! DirectMessageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ChatRoomCell
+        cell.viewModel = ChatRoomViewModel(chatRoom: chatRooms[indexPath.row])
         return cell
     }
 }
 
 //MARK: - UITableViewDelegate
 
-extension DirectMessageController {
+extension ChatRoomListController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
 }

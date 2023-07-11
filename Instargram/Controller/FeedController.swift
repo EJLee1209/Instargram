@@ -64,7 +64,7 @@ class FeedController: UICollectionViewController {
     }
     
     @objc func handleDirectMessage() {
-        let controller = DirectMessageController()
+        let controller = ChatRoomListController()
         navigationController?.pushViewController(controller, animated: true)
     }
     

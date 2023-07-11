@@ -7,9 +7,16 @@
 
 import UIKit
 
-class DirectMessageCell: UITableViewCell {
+class ChatRoomCell: UITableViewCell {
     
     //MARK: - Properties
+    
+    var viewModel: ChatRoomViewModel? {
+        didSet {
+            configure()
+        }
+    }
+    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -21,7 +28,6 @@ class DirectMessageCell: UITableViewCell {
     private let usernameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
-        label.text = "이은재"
         return label
     }()
     
@@ -29,7 +35,6 @@ class DirectMessageCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .darkGray
-        label.text = "안녕하세요 테스트 메세지 입니다"
         return label
     }()
     
@@ -57,6 +62,18 @@ class DirectMessageCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Helpers
+    
+    func configure() {
+        guard let viewModel = viewModel else { return }
+        recentMessageLabel.text = viewModel.lastMessage
+        
+        viewModel.receiverObserver = { [weak self] in
+            self?.profileImageView.sd_setImage(with: viewModel.receiverProfileImageURL)
+            self?.usernameLabel.text = viewModel.receiverFullname
+        }
     }
 }
 
