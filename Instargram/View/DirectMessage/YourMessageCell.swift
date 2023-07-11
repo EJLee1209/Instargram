@@ -47,12 +47,22 @@ class YourMessageCell : UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(profileImageView)
-        profileImageView.anchor(left: leftAnchor, bottom: bottomAnchor, paddingLeft: 8)
+        profileImageView.anchor(
+            left: leftAnchor,
+            bottom: bottomAnchor,
+            paddingLeft: 8,
+            paddingBottom: 8
+        )
         profileImageView.setDimensions(height: 40, width: 40)
         profileImageView.layer.cornerRadius = 20
         
         addSubview(messageLabel)
-        messageLabel.anchor(left: profileImageView.rightAnchor, bottom: profileImageView.centerYAnchor, paddingLeft: 12, paddingBottom: -8)
+        messageLabel.anchor(
+            left: profileImageView.rightAnchor,
+            bottom: profileImageView.centerYAnchor,
+            paddingLeft: 12,
+            paddingBottom: -8
+        )
     }
     
     required init?(coder: NSCoder) {

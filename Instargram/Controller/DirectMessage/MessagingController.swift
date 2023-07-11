@@ -118,9 +118,9 @@ extension MessagingController: UICollectionViewDelegateFlowLayout {
             context: nil)
         
         if messages[indexPath.row].isMyMessage {
-            return CGSize(width: view.frame.width, height: cellSize.height + 20)
+            return CGSize(width: view.frame.width, height: cellSize.height + 36)
         } else {
-            return CGSize(width: view.frame.width, height: cellSize.height + 40)
+            return CGSize(width: view.frame.width, height: cellSize.height + 48)
         }
 
     }

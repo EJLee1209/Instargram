@@ -36,7 +36,14 @@ class MyMessageCell : UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(messageLabel)
-        messageLabel.anchor(top: topAnchor, bottom: bottomAnchor, right: rightAnchor, paddingRight: 8)
+        messageLabel.anchor(
+            top: topAnchor,
+            bottom: bottomAnchor,
+            right: rightAnchor,
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingRight: 8
+        )
     }
     
     required init?(coder: NSCoder) {
