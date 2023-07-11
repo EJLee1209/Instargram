@@ -34,6 +34,11 @@
 		CF1B3F1E2A5C452F00F2A122 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F1D2A5C452F00F2A122 /* ChatRoom.swift */; };
 		CF1B3F202A5C4CD400F2A122 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F1F2A5C4CD400F2A122 /* ChatRoomViewModel.swift */; };
 		CF1B3F2A2A5D305900F2A122 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F292A5D305900F2A122 /* Message.swift */; };
+		CF1B3F2C2A5D352F00F2A122 /* MessagingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F2B2A5D352F00F2A122 /* MessagingController.swift */; };
+		CF1B3F2F2A5D361400F2A122 /* MyMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F2E2A5D361400F2A122 /* MyMessageCell.swift */; };
+		CF1B3F312A5D376600F2A122 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F302A5D376600F2A122 /* PaddingLabel.swift */; };
+		CF1B3F332A5D44FC00F2A122 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F322A5D44FC00F2A122 /* MessageViewModel.swift */; };
+		CF1B3F352A5D4D4C00F2A122 /* YourMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B3F342A5D4D4C00F2A122 /* YourMessageCell.swift */; };
 		CF25246B2A528D78005EC5BE /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25246A2A528D78005EC5BE /* UploadPostController.swift */; };
 		CF25246D2A528FD3005EC5BE /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25246C2A528FD3005EC5BE /* InputTextView.swift */; };
 		CF25246F2A529815005EC5BE /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25246E2A529815005EC5BE /* PostService.swift */; };
@@ -101,6 +106,11 @@
 		CF1B3F1D2A5C452F00F2A122 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		CF1B3F1F2A5C4CD400F2A122 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
 		CF1B3F292A5D305900F2A122 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		CF1B3F2B2A5D352F00F2A122 /* MessagingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingController.swift; sourceTree = "<group>"; };
+		CF1B3F2E2A5D361400F2A122 /* MyMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageCell.swift; sourceTree = "<group>"; };
+		CF1B3F302A5D376600F2A122 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		CF1B3F322A5D44FC00F2A122 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		CF1B3F342A5D4D4C00F2A122 /* YourMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMessageCell.swift; sourceTree = "<group>"; };
 		CF25246A2A528D78005EC5BE /* UploadPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		CF25246C2A528FD3005EC5BE /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		CF25246E2A529815005EC5BE /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
@@ -243,8 +253,7 @@
 				CF197A732A4DBEFE00F35185 /* ProfileController.swift */,
 				CF25246A2A528D78005EC5BE /* UploadPostController.swift */,
 				CF2524762A52FB1E005EC5BE /* CommentController.swift */,
-				CF1B3F132A5C1BFE00F2A122 /* ChatRoomListController.swift */,
-				CF1B3F172A5C23B600F2A122 /* NewMessageController.swift */,
+				CF1B3F2D2A5D353900F2A122 /* DirectMessage */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -259,6 +268,7 @@
 				CFAC13CD2A544B9F00BEDC99 /* CommentViewModel.swift */,
 				CFE399172A59AE6A0051F1CB /* NotificationViewModel.swift */,
 				CF1B3F1F2A5C4CD400F2A122 /* ChatRoomViewModel.swift */,
+				CF1B3F322A5D44FC00F2A122 /* MessageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -305,6 +315,18 @@
 			children = (
 				CF1B3F152A5C1C9100F2A122 /* ChatRoomCell.swift */,
 				CF1B3F192A5C388600F2A122 /* NewMessageHeader.swift */,
+				CF1B3F2E2A5D361400F2A122 /* MyMessageCell.swift */,
+				CF1B3F342A5D4D4C00F2A122 /* YourMessageCell.swift */,
+			);
+			path = DirectMessage;
+			sourceTree = "<group>";
+		};
+		CF1B3F2D2A5D353900F2A122 /* DirectMessage */ = {
+			isa = PBXGroup;
+			children = (
+				CF1B3F132A5C1BFE00F2A122 /* ChatRoomListController.swift */,
+				CF1B3F172A5C23B600F2A122 /* NewMessageController.swift */,
+				CF1B3F2B2A5D352F00F2A122 /* MessagingController.swift */,
 			);
 			path = DirectMessage;
 			sourceTree = "<group>";
@@ -324,6 +346,7 @@
 				CF197A7E2A4DDB5000F35185 /* CustomTextField.swift */,
 				CFE802D52A4F2973003B2F88 /* CustomButton.swift */,
 				CF25246C2A528FD3005EC5BE /* InputTextView.swift */,
+				CF1B3F302A5D376600F2A122 /* PaddingLabel.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -470,8 +493,10 @@
 				CFA9C9362A501F6A00F673AB /* ProfileHeaderViewModel.swift in Sources */,
 				CFAC13CC2A54493000BEDC99 /* Comment.swift in Sources */,
 				CFE399182A59AE6A0051F1CB /* NotificationViewModel.swift in Sources */,
+				CF1B3F352A5D4D4C00F2A122 /* YourMessageCell.swift in Sources */,
 				CF197A762A4DC9BB00F35185 /* FeedCell.swift in Sources */,
 				CF25246B2A528D78005EC5BE /* UploadPostController.swift in Sources */,
+				CF1B3F2C2A5D352F00F2A122 /* MessagingController.swift in Sources */,
 				CF2524772A52FB1E005EC5BE /* CommentController.swift in Sources */,
 				CF197A702A4DBEED00F35185 /* ImageSelectorController.swift in Sources */,
 				CF2524712A52B039005EC5BE /* Post.swift in Sources */,
@@ -495,12 +520,15 @@
 				CFA9C93B2A507B3500F673AB /* UserCellViewModel.swift in Sources */,
 				CF1B3F1C2A5C44EE00F2A122 /* MessagingService.swift in Sources */,
 				CFE399122A5989C60051F1CB /* NotificationCell.swift in Sources */,
+				CF1B3F312A5D376600F2A122 /* PaddingLabel.swift in Sources */,
 				CFE399162A59A5F60051F1CB /* NotificationService.swift in Sources */,
 				CF197A4A2A4DBC8500F35185 /* AppDelegate.swift in Sources */,
+				CF1B3F332A5D44FC00F2A122 /* MessageViewModel.swift in Sources */,
 				CF197A6A2A4DBDAD00F35185 /* MainTabController.swift in Sources */,
 				CF25246F2A529815005EC5BE /* PostService.swift in Sources */,
 				CFA9C9302A501AF500F673AB /* UserService.swift in Sources */,
 				CF1B3F142A5C1BFE00F2A122 /* ChatRoomListController.swift in Sources */,
+				CF1B3F2F2A5D361400F2A122 /* MyMessageCell.swift in Sources */,
 				CF1B3F182A5C23B600F2A122 /* NewMessageController.swift in Sources */,
 				CF197A782A4DCA4B00F35185 /* Extensions.swift in Sources */,
 				CFA467522A4EDA8300EABDC9 /* ImageUploader.swift in Sources */,

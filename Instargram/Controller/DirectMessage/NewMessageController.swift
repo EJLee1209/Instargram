@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NewMessageControllerDelegate: AnyObject {
+    func newMessage(_ viewController: NewMessageController, wantsToNewChatRoomWith user: User)
+}
+
 private let reuseIdentifier = "UserCell"
 
 class NewMessageController: UITableViewController {
@@ -15,8 +19,8 @@ class NewMessageController: UITableViewController {
     
     var users : [User] = []
     var filteredUsers: [User] = [] // 검색어에 따라 유저 목록 필터링
-    
     var searchMode = false
+    weak var delegate: NewMessageControllerDelegate?
     
     //MARK: - LifeCycle
     
@@ -79,11 +83,10 @@ extension NewMessageController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if searchMode {
-            print("DEBUG: \(filteredUsers[indexPath.row].fullname)님과 새로운 채팅을 시작합니다")
+            delegate?.newMessage(self, wantsToNewChatRoomWith: filteredUsers[indexPath.row])
         } else {
-            print("DEBUG: \(users[indexPath.row].fullname)님과 새로운 채팅을 시작합니다")
+            delegate?.newMessage(self, wantsToNewChatRoomWith: users[indexPath.row])
         }
-        
     }
 }
 

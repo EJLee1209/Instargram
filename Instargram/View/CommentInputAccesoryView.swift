@@ -17,7 +17,7 @@ class CommentInputAccesoryView: UIView {
     
     weak var delegate: CommentInputAccesoryViewDelegate?
     
-    private let commentTextView: InputTextView = {
+    let commentTextView: InputTextView = {
         let tv = InputTextView()
         tv.placeholderText = "Enter comment.."
         tv.font = .systemFont(ofSize: 15)
@@ -26,7 +26,7 @@ class CommentInputAccesoryView: UIView {
         return tv
     }()
     
-    private let postButton: UIButton = {
+    let postButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Post", for: .normal)
         button.setTitleColor(.black, for: .normal)
