@@ -75,7 +75,7 @@ struct MessagingService {
                 .updateData([
                     "lastMessage": messageText,
                     "timestamp": Timestamp(date: Date())
-                ])
+                ], completion: completion)
         }
     }
     

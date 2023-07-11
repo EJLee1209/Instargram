@@ -129,22 +129,19 @@ extension MessagingController: UICollectionViewDelegateFlowLayout {
 
 extension MessagingController : CommentInputAccesoryViewDelegate {
     func inputView(_ inputView: CommentInputAccesoryView, wantsToUploadComment comment: String) {
+        commentInputView.clearCommentTextView()
         guard let receiver = receiver else { return }
         
         guard let roomId = roomId else {
             MessagingService.createChatRoom(receiver: receiver.uid) { [weak self] id in
                 self?.roomId = id
                 
-                MessagingService.sendMessage(forRoom: id, messageText: comment) { [weak self] _ in
-                    self?.commentInputView.clearCommentTextView()
-                }
+                MessagingService.sendMessage(forRoom: id, messageText: comment) { _ in }
             }
             return
         }
         
-        MessagingService.sendMessage(forRoom: roomId, messageText: comment) { [weak self] _ in
-            self?.commentInputView.clearCommentTextView()
-        }
+        MessagingService.sendMessage(forRoom: roomId, messageText: comment) { _ in }
     }
 }
 
